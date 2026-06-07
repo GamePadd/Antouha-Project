@@ -75,8 +75,8 @@ int main(int argc, char* args[])
 			//Render
 			SDL_RenderClear(gRenderer);
 
-			if (bulb != nullptr) { bulb->render(35.5f, 35.5f); }
-			if (bulb != nullptr) { bulb->render(35.5f, 75.0f); }
+			if (bulb != nullptr) { bulb->render(35.5f, 35.5f, 45.0f,45.0f); }
+			if (bulb != nullptr) { bulb->render(35.5f, 75.0f, 250.0f, 55.0f); }
 
 			SDL_RenderPresent(gRenderer);
 		}

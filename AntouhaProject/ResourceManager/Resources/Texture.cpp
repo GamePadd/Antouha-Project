@@ -2,7 +2,7 @@
 
 namespace Ant {
 	
-	void Texture::render(float x, float y) {
+	void Texture::render(float x, float y, float width, float height) {
 		SDL_FRect dstRect{ x,y, static_cast<float>(width), static_cast<float>(height) };
 		SDL_RenderTexture(renderer, texture, nullptr, &dstRect);
 	}

@@ -26,7 +26,7 @@ namespace Ant {
 
 			void free() override;
 
-			void render(float,float);
+			void render(float x, float y, float width = 25, float height = 25);
 
 			int getWidth() { return width; }
 			int getHeight() { return height; }
