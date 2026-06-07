@@ -5,8 +5,8 @@
 
 namespace Ant {
 	template <typename T>
-	concept Resource = requires(T res, const std::string& path) {
-		{ res.load(path) } -> std::same_as<bool>;
+	concept Resource = requires(T res) {
+		{ res.load() } -> std::same_as<bool>;
 		{ res.free() } -> std::same_as<void>;
 	};
 
@@ -15,14 +15,24 @@ namespace Ant {
 		private:
 			std::unordered_map<std::string, T*> resources;
 		public:
-			void load(const std::string& resourceName, const std::string& filePath) {
-				T* resource = new T();
-				if (resource->load(filePath)) {
+			~ResourceManager() { removeAll(); }
+
+			template <typename... Args>
+			void load(const std::string& resourceName, Args&&... args) {
+				T* resource = new T (std::forward<Args>(args)...);
+
+				if (resource->load()) {
 					resources[resourceName] = std::move(resource);
 				}
 				else {
 					delete resource;
 				}
+			}
+
+			T* get(const std::string& resourceName) {
+				auto it = resources.find(resourceName);
+				if (it == resources.end()) { return nullptr; }
+				return it->second;
 			}
 
 			void remove(const std::string& resourceName) {
