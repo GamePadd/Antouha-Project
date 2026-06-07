@@ -1,8 +1,10 @@
-﻿#include "AntouhaProject.h"
+﻿#include "Game.h"
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 #include <SDL3_image/SDL_image.h>
 #include <string>
+#include "../ResourceManager/ResourceManager.h"
+#include "../ResourceManager/Resources/Texture.h"
 
 constexpr int kScreenWidth{ 640 };
 constexpr int kScreenHeight{ 480 };
