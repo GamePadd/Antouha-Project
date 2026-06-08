@@ -1,3 +1,5 @@
+#pragma once
+
 #include <unordered_map>
 #include <functional>
 #include <typeinfo>
@@ -5,7 +7,6 @@
 #include <vector>
 #include <queue>
 #include <memory>
-#pragma once
 
 #include "IEvent.h"
 

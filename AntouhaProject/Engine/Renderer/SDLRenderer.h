@@ -1,13 +1,14 @@
 #pragma once
 
 #include "../Window/IWindow.h"
+#include "IRenderer.h"
 
 namespace Ant {
-	class Renderer {
+	class SDLRenderer : IRenderer {
 		private:
 			IWindow* context;
 		public:
-			Renderer(IWindow* _context) : context(_context) {}
+			SDLRenderer(IWindow* _context) : context(_context) {}
 
 			void render();
 	};

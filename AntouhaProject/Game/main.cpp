@@ -1,69 +1,9 @@
-#include <SDL3/SDL.h>
+#include "../Engine/EngineH.h"
 #include <SDL3/SDL_main.h>
-#include <SDL3_image/SDL_image.h>
-#include <string>
-#include <iostream>
-#include "../Engine/ResourceManager/ResourceManager.h"
-#include "../Engine/ResourceManager/Resources/Texture.h"
-#include "../Engine/Event/EventBus.h"
-#include "../Engine/Window/Window.h"
 
-#include "Events.h"
-
-int main(int argc, char* args[])
+int main(int argc, char* argv[])
 {
 	int exitCode{ 0 };
-	if (initSDL() == false) {
-		SDL_Log("Can't init a program!\n");
-		exitCode = 1;
-	}
-	else {
-		Ant::ResourceManager<Ant::Texture>* TextureManager = new Ant::ResourceManager<Ant::Texture>();
-		TextureManager->load("bulba", gRenderer, "bulba.jpg");
 
-		//Event bus
-
-		Ant::EventBus* eventBus = new Ant::EventBus();
-		eventBus->subscribe<Ant::TestEvent>([](const Ant::TestEvent& e) {
-			SDL_Log("Test event worked per frame !: value = %d", e.value);
-			});
-		//Game cycle
-
-		bool quit{ false };
-
-		SDL_Event e;
-		SDL_zero(e);
-
-		Ant::Texture* bulb = TextureManager->get("bulba");
-
-		while (!quit) {
-			SDL_Log("------------------------");
-			//Poll events
-			while (SDL_PollEvent(&e) == true) {
-				if (e.type == SDL_EVENT_QUIT) {
-					quit = true;
-				}
-			}
-
-			//Update logic
-
-			//test event emit
-
-			eventBus->queueEvent<Ant::TestEvent>(Ant::TestEvent{ 5 });
-			eventBus->queueEvent<Ant::TestEvent>(Ant::TestEvent{ 5 });
-
-			eventBus->process();
-
-			//Render
-			SDL_RenderClear(gRenderer);
-
-			if (bulb != nullptr) { bulb->render(35.5f, 35.5f, 45.0f, 45.0f); }
-			if (bulb != nullptr) { bulb->render(35.5f, 75.0f, 250.0f, 55.0f); }
-
-			SDL_RenderPresent(gRenderer);
-		}
-	}
-
-	close();
 	return exitCode;
 }

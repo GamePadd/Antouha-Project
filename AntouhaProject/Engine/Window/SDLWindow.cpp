@@ -1,7 +1,7 @@
-#include "Window.h"
+#include "SDLWindow.h"
 
 namespace Ant {
-	bool Window::init() {
+	bool SDLWindow::init() {
 		bool success{ true };
 
 		if (!SDL_Init(SDL_INIT_VIDEO)) {
@@ -22,7 +22,7 @@ namespace Ant {
 		return success;
 	}
 
-	Window::~Window() {
+	SDLWindow::~SDLWindow() {
 		SDL_DestroyRenderer(renderer);
 		renderer = nullptr;
 

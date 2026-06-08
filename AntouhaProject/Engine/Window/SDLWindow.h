@@ -3,11 +3,10 @@
 #include "IWindow.h"
 
 #include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
 #include <SDL3_image/SDL_image.h>
 
 namespace Ant {
-	class Window : public IWindow {
+	class SDLWindow : public IWindow {
 		private:
 			SDL_Window* window;
 			SDL_Renderer* renderer;
@@ -18,7 +17,7 @@ namespace Ant {
 			bool isInitialized;
 
 		public:
-			Window(const char* windowName = "Default", int _width = 640, int _height = 480) :
+			SDLWindow(const char* windowName = "Default", int _width = 640, int _height = 480) :
 				width(_width),
 				height(_height),
 				window{ nullptr },
@@ -32,6 +31,6 @@ namespace Ant {
 			int getWidth() const override { return width; }
 			int getHeight() const override { return height; }
 
-			~Window();
+			~SDLWindow();
 	};
 }
