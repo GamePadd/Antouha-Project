@@ -26,8 +26,8 @@ namespace Ant {
 			}
 
 			template <typename T>
-			void queueEvent(const T& event) {
-				eventQueue.push(std::make_unique<T>(event));
+			void queueEvent(T&& event) {
+				eventQueue.push(std::make_unique<T>(std::forward<T>(event)));
 			}
 
 			void process();

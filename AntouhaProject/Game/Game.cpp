@@ -88,6 +88,7 @@ int main(int argc, char* args[])
 			eventBus->queueEvent<Ant::TestEvent>(Ant::TestEvent{ 5 });
 
 			eventBus->process();
+			
 			//Render
 			SDL_RenderClear(gRenderer);
 
