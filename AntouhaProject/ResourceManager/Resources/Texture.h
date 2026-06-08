@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../IResource.h"
 
 #include <SDL3/SDL.h>

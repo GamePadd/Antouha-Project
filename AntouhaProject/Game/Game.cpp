@@ -6,6 +6,9 @@
 #include "Game.h"
 #include "../ResourceManager/ResourceManager.h"
 #include "../ResourceManager/Resources/Texture.h"
+#include "../Event/EventBus.h"
+
+#include "Events.h"
 
 constexpr int kScreenWidth{ 640 };
 constexpr int kScreenHeight{ 480 };
@@ -53,6 +56,12 @@ int main(int argc, char* args[])
 		Ant::ResourceManager<Ant::Texture>* TextureManager = new Ant::ResourceManager<Ant::Texture>();
 		TextureManager->load("bulba", gRenderer, "bulba.jpg");
 
+		//Event bus
+
+		Ant::EventBus* eventBus = new Ant::EventBus();
+		eventBus->subscribe<Ant::TestEvent>([](const Ant::TestEvent& e) {
+			SDL_Log("Test event worked per frame !: value = %d", e.value);
+		});
 		//Game cycle
 
 		bool quit{ false };
@@ -63,6 +72,7 @@ int main(int argc, char* args[])
 		Ant::Texture* bulb = TextureManager->get("bulba");
 
 		while (!quit) {
+			SDL_Log("------------------------");
 			//Poll events
 			while (SDL_PollEvent(&e) == true) {
 				if (e.type == SDL_EVENT_QUIT) {
@@ -72,6 +82,12 @@ int main(int argc, char* args[])
 
 			//Update logic
 
+			//test event emit
+
+			eventBus->queueEvent<Ant::TestEvent>(Ant::TestEvent{5});
+			eventBus->queueEvent<Ant::TestEvent>(Ant::TestEvent{ 5 });
+
+			eventBus->process();
 			//Render
 			SDL_RenderClear(gRenderer);
 
