@@ -2,6 +2,8 @@
 	"Game/Game.cpp"
 	"ResourceManager/Resources/Texture.cpp"
 	"Event/EventBus.cpp"
+	"Game/main.cpp"
+	"Window/Window.cpp"
 )
 
 set(HEADERS
@@ -11,6 +13,8 @@ set(HEADERS
 	"ResourceManager/Resources/Texture.h"
 	"Event/EventBus.h"
 	"Event/IEvent.h"
+	"Game/Events.h"
+	"Window/Window.h"
 )
 
 add_executable (AntouhaProject WIN32 ${SOURCES} ${HEADERS})
