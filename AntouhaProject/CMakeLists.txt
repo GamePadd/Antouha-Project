@@ -1,20 +1,23 @@
 ﻿set(SOURCES
 	"Game/Game.cpp"
-	"ResourceManager/Resources/Texture.cpp"
-	"Event/EventBus.cpp"
+	"Engine/ResourceManager/Resources/Texture.cpp"
+	"Engine/Event/EventBus.cpp"
 	"Game/main.cpp"
-	"Window/Window.cpp"
+	"Engine/Window/Window.cpp"
+	"Engine/Renderer/Renderer.cpp"
 )
 
 set(HEADERS
 	"Game/Game.h"
-	"ResourceManager/ResourceManager.h"
-	"ResourceManager/IResource.h"
-	"ResourceManager/Resources/Texture.h"
-	"Event/EventBus.h"
-	"Event/IEvent.h"
+	"Engine/ResourceManager/ResourceManager.h"
+	"Engine/ResourceManager/IResource.h"
+	"Engine/ResourceManager/Resources/Texture.h"
+	"Engine/Event/EventBus.h"
+	"Engine/Event/IEvent.h"
 	"Game/Events.h"
-	"Window/Window.h"
+	"Engine/Window/Window.h"
+	"Engine/Window/IWindow.h"
+	"Engine/Renderer/Renderer.h"
 )
 
 add_executable (AntouhaProject WIN32 ${SOURCES} ${HEADERS})

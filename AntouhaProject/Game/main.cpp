@@ -3,46 +3,12 @@
 #include <SDL3_image/SDL_image.h>
 #include <string>
 #include <iostream>
-#include "../ResourceManager/ResourceManager.h"
-#include "../ResourceManager/Resources/Texture.h"
-#include "../Event/EventBus.h"
+#include "../Engine/ResourceManager/ResourceManager.h"
+#include "../Engine/ResourceManager/Resources/Texture.h"
+#include "../Engine/Event/EventBus.h"
+#include "../Engine/Window/Window.h"
 
 #include "Events.h"
-
-constexpr int kScreenWidth{ 640 };
-constexpr int kScreenHeight{ 480 };
-
-SDL_Window* gWindow{ nullptr };
-SDL_Renderer* gRenderer{ nullptr };
-
-bool initSDL() {
-	bool success{ true };
-	if (!SDL_Init(SDL_INIT_VIDEO)) {
-		SDL_Log("SDL could not initialize! SDL Error: %s\n", SDL_GetError());
-		success = false;
-	}
-	else {
-		if (gWindow = SDL_CreateWindow("BulbaOral", kScreenWidth, kScreenHeight, 0); gWindow == nullptr) {
-			SDL_Log("Window could not created! SDL Error: %s\n", SDL_GetError());
-			success = false;
-		}
-		else {
-			gRenderer = SDL_CreateRenderer(gWindow, 0);
-		}
-	}
-
-	return success;
-}
-
-void close() {
-	SDL_DestroyRenderer(gRenderer);
-	gRenderer = nullptr;
-
-	SDL_DestroyWindow(gWindow);
-	gWindow = nullptr;
-
-	SDL_Quit();
-}
 
 int main(int argc, char* args[])
 {
