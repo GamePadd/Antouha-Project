@@ -21,7 +21,7 @@ namespace Ant {
 			CloseCallback onClose;
 
 		public:
-			SDLWindow(const char* _windowName = "Default", int _width = 640, int _height = 480) :
+			SDLWindow(const char* _windowName, int _width, int _height) :
 				windowName(_windowName),
 				width(_width),
 				height(_height),

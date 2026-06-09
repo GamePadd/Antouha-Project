@@ -34,6 +34,8 @@ namespace Ant {
 	void Engine::run() {
 		bool quit{ false };
 
+		//FIXME: ≈блан переделай потом коллбеки через шину ивентов и не еби мозги
+
 		window->setOnClose([&]() {
 			quit = true;
 			SDL_Log("CLOSE CALLBACK WORKED!\n");
