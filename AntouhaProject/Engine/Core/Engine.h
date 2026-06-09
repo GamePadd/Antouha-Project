@@ -45,6 +45,8 @@ namespace Ant {
 
 			EngineConfig config;
 
+			EventBus eventBus;
+
 			void CreateWindow();
 			void CreateRenderer();
 

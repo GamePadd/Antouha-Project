@@ -1,11 +1,16 @@
 #include "Engine.h"
 #include "../Window/SDLWindow.h"
 #include "../Renderer/SDLRenderer.h"
+#include "../Event/Events.h"
 
 namespace Ant {
 	Engine::Engine(const EngineConfig& cfg) : config(cfg) {
 		CreateWindow();
 		CreateRenderer();
+
+		window->setOnClose([&]() {
+			eventBus.queueEvent<QuitEvent>(QuitEvent());
+		});
 	}
 
 	Engine::~Engine() {
@@ -34,18 +39,20 @@ namespace Ant {
 	void Engine::run() {
 		bool quit{ false };
 
-		//FIXME: ≈блан переделай потом коллбеки через шину ивентов и не еби мозги
-
-		window->setOnClose([&]() {
+		eventBus.subscribe<QuitEvent>([&](const QuitEvent& e) {
 			quit = true;
-			SDL_Log("CLOSE CALLBACK WORKED!\n");
+			SDL_Log("CLOSE EVENT WORKED!\n");
 		});
 
 		SDL_Event e;
 		SDL_zero(e);
 
 		while (!quit) {
+			//Process events
 			window->pollEvents();
+			eventBus.process();
+
+			//Render screen
 			window->swapBuffers();
 		}
 	}

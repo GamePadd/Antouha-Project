@@ -25,6 +25,7 @@ set(HEADERS
 	"Engine/InputService/InputService.h"
 	"Engine/InputService/KeyCodes.h"
 	"Engine/InputService/IInputService.h"
+	"Engine/Event/Events.h"
 )
 
 add_executable (AntouhaProject WIN32 ${SOURCES} ${HEADERS})
