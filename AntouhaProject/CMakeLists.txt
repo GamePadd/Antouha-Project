@@ -6,6 +6,7 @@
 	"Engine/Window/SDLWindow.cpp"
 	"Engine/Renderer/SDLRenderer.cpp"
 	"Engine/Core/Engine.cpp"
+	"Engine/InputService/InputService.cpp"
 )
 
 set(HEADERS
@@ -21,6 +22,9 @@ set(HEADERS
 	"Engine/Renderer/SDLRenderer.h"
 	"Engine/Core/Engine.h"
 	"Engine/Core/IGameLogic.h"
+	"Engine/InputService/InputService.h"
+	"Engine/InputService/KeyCodes.h"
+	"Engine/InputService/IInputService.h"
 )
 
 add_executable (AntouhaProject WIN32 ${SOURCES} ${HEADERS})

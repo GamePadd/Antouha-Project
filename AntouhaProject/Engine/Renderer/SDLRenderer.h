@@ -4,7 +4,7 @@
 #include "IRenderer.h"
 
 namespace Ant {
-	class SDLRenderer : IRenderer {
+	class SDLRenderer : public IRenderer {
 		private:
 			IWindow* context;
 		public:

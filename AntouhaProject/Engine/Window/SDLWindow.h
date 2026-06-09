@@ -11,13 +11,18 @@ namespace Ant {
 			SDL_Window* window;
 			SDL_Renderer* renderer;
 
+			const char* windowName;
+
 			int width;
 			int height;
 
 			bool isInitialized;
 
+			CloseCallback onClose;
+
 		public:
-			SDLWindow(const char* windowName = "Default", int _width = 640, int _height = 480) :
+			SDLWindow(const char* _windowName = "Default", int _width = 640, int _height = 480) :
+				windowName(_windowName),
 				width(_width),
 				height(_height),
 				window{ nullptr },
@@ -30,6 +35,11 @@ namespace Ant {
 
 			int getWidth() const override { return width; }
 			int getHeight() const override { return height; }
+
+			void swapBuffers() override;
+			void pollEvents() override;
+
+			void setOnClose(CloseCallback callback) { onClose = callback; }
 
 			~SDLWindow();
 	};
