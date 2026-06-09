@@ -5,6 +5,7 @@
 #include "../Window/IWindow.h"
 #include "../ResourceManager/ResourceManager.h"
 #include  "../ResourceManager/Resources/Texture.h"
+#include "IGameLogic.h"
 
 namespace Ant {
 	enum class WindowRenderer {
@@ -47,11 +48,15 @@ namespace Ant {
 
 			EventBus eventBus;
 
+			//GameLogic
+
+			IGameLogic* game;
+
 			void CreateWindow();
 			void CreateRenderer();
 
 		public:
-			Engine(const EngineConfig&);
+			Engine(const EngineConfig&, IGameLogic*);
 			~Engine();
 			void run();
 	};

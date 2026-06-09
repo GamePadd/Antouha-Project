@@ -4,6 +4,7 @@
 
 #include "Core/Engine.h"
 #include "Core/IGameLogic.h"
+#include "Core/GameServices.h"
 
 //Event
 
