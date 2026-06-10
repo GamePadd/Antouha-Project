@@ -10,6 +10,12 @@ class TestScreen : public Ant::IScreen {
 		Ant::EventBus* events;
 		Ant::ScreenManager* screens;
 
+		//Textures
+
+		Ant::Texture* bulba = nullptr;
+		Ant::Vec2f bulbaPos = Ant::Vec2f{ 125.0f,125.0f };
+		Ant::Vec2f bulbaSize = Ant::Vec2f{ 255.0f,255.0f };
+
 	public:
 		void init(const Ant::GameServices& services) override {
 			window = services.window;
@@ -21,6 +27,7 @@ class TestScreen : public Ant::IScreen {
 			//Load textures
 
 			textures->load("bulba", (SDL_Renderer*)window->getNativeHandle(), "bulba.jpg");
+			bulba = textures->get("bulba");
 		}
 
 		void onUpdate(float dt) override {
@@ -28,8 +35,9 @@ class TestScreen : public Ant::IScreen {
 		}
 
 		void onRender() override {
-			renderer->QueueTexture(textures->get("bulba"), Ant::Vec2f{ 125.0f,125.0f }, Ant::Vec2f{ 255.0f,255.0f }, 1);
-			renderer->QueueTexture(textures->get("bulba"), Ant::Vec2f{ 175.0f,125.0f }, Ant::Vec2f{ 255.0f,255.0f }, 2);
+			for (int i = 0; i < 2000; i++) {
+				renderer->QueueTexture(bulba, bulbaPos, bulbaSize, 1);
+			}
 		}
 
 		void onClose() override {

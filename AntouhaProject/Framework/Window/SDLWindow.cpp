@@ -14,7 +14,7 @@ namespace Ant {
 				success = false;
 			}
 			else {
-				renderer = SDL_CreateRenderer(window, 0);
+				renderer = SDL_CreateRenderer(window, NULL);
 				SDL_Log("SDL Window initialized!\n");
 			}
 		}

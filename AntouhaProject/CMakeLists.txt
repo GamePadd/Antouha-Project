@@ -32,6 +32,6 @@ set(HEADERS
 	"Framework/Math/Math.h"
 )
 
-add_executable (AntouhaProject WIN32 ${SOURCES} ${HEADERS})
+add_executable (AntouhaProject ${SOURCES} ${HEADERS})
 target_include_directories(AntouhaProject PRIVATE "${CMAKE_SOURCE_DIR}/thirdparty/GLM")
 target_link_libraries(AntouhaProject PRIVATE SDL3::SDL3 SDL3_image::SDL3_image)

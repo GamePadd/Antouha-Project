@@ -4,6 +4,7 @@
 #include "IRenderer.h"
 
 #define MAX_LAYERS 32
+#define RESERVE_SPRITES 4096
 
 namespace Ant {
 	class SDLRenderer : public IRenderer {
@@ -15,9 +16,14 @@ namespace Ant {
 
 			void RenderAll() override;
 		public:
-			SDLRenderer(IWindow* _context) : context(_context) { renderer = (SDL_Renderer*)context->getNativeHandle(); }
+			SDLRenderer(IWindow* _context) : context(_context) { 
+				renderer = (SDL_Renderer*)context->getNativeHandle(); 
+				for (int i = 0; i < MAX_LAYERS; i++) {
+					layers[i].reserve(RESERVE_SPRITES);
+				}
+			}
 
 			void Clear() override;
-			void QueueTexture(const Texture* texture, Vec2f pos, Vec2f size, int layer) override;
+			void QueueTexture(const Texture* texture, const Vec2f& pos, const Vec2f& size, int layer) override;
 	};
 }

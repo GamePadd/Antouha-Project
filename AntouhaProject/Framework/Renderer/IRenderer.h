@@ -19,6 +19,6 @@ namespace Ant {
 			virtual ~IRenderer() = default;
 
 			virtual void Clear() = 0;
-			virtual void QueueTexture(const Texture* texture, Vec2f pos, Vec2f size, int layer) = 0;
+			virtual void QueueTexture(const Texture* texture, const Vec2f& pos, const Vec2f& size, int layer) = 0;
 	};
 }
