@@ -28,7 +28,7 @@ class TestScreen : public Ant::IScreen {
 		}
 
 		void onRender() override {
-			renderer->QueueTexture(textures->get("bulba"), Ant::Vec2f{125.0f,125.0f}, Ant::Vec2f{ 255.0f,255.0f }, 1);
+			renderer->QueueTexture(textures->get("bulba"), Ant::Vec2f{ 125.0f,125.0f }, Ant::Vec2f{ 255.0f,255.0f }, 1);
 			renderer->QueueTexture(textures->get("bulba"), Ant::Vec2f{ 175.0f,125.0f }, Ant::Vec2f{ 255.0f,255.0f }, 2);
 		}
 

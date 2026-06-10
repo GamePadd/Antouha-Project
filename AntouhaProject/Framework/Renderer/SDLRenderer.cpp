@@ -16,6 +16,7 @@ namespace Ant {
 				SDL_FRect dstRect{ it.pos.x, it.pos.y, it.size.x, it.size.y };
 				SDL_RenderTexture(renderer, (SDL_Texture*)it.texture->get(), nullptr, &dstRect);
 			}
+			layers[i] = std::vector<RenderLayerElement>();
 		}
 	}
 }

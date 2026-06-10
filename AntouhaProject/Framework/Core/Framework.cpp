@@ -54,7 +54,6 @@ namespace Ant {
 
 		eventBus.subscribe<QuitEvent>([&](const QuitEvent& e) {
 			quit = true;
-			SDL_Log("CLOSE EVENT WORKED!\n");
 		});
 
 		SDL_Event e;
@@ -85,6 +84,8 @@ namespace Ant {
 
 			renderer->RenderAll();
 			window->swapBuffers();
+
+			SDL_Log("fps: %f", 1/dt);
 		}
 
 		game->onQuit();
