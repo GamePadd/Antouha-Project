@@ -27,8 +27,7 @@ namespace Ant {
 			bool isLoaded() override { return texture != nullptr; };
 
 			void free() override;
-
-			void render(float x, float y, float width = 25, float height = 25);
+			void* get() const override { return texture; }
 
 			int getWidth() { return width; }
 			int getHeight() { return height; }

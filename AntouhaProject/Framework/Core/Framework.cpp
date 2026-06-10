@@ -46,6 +46,7 @@ namespace Ant {
 		services.renderer = renderer;
 		services.eventBus = &eventBus;
 		services.textures = &textureManager;
+		services.screens = &screenManager;
 
 		game->init(services);
 
@@ -82,6 +83,7 @@ namespace Ant {
 				scr->onRender();
 			}
 
+			renderer->RenderAll();
 			window->swapBuffers();
 		}
 

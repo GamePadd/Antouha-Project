@@ -1,8 +1,9 @@
 #pragma once
 
-#include "../Core/GameServices.h"
 
 namespace Ant {
+	struct GameServices;
+
 	class IScreen {
 		public:
 			virtual ~IScreen() = default;

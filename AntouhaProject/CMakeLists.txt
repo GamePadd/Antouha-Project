@@ -1,5 +1,4 @@
 ﻿set(SOURCES
-	"Game/Game.cpp"
 	"Framework/ResourceManager/Resources/Texture.cpp"
 	"Framework/Event/EventBus.cpp"
 	"Game/main.cpp"
@@ -30,6 +29,7 @@ set(HEADERS
 	"Framework/FrameworkH.h"
 	"Framework/ScreenManager/ScreenManager.h"
 	"Framework/ScreenManager/IScreen.h"
+	"Framework/Math/Math.h"
 )
 
 add_executable (AntouhaProject WIN32 ${SOURCES} ${HEADERS})

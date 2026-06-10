@@ -14,6 +14,8 @@ namespace Ant {
 			virtual void swapBuffers() = 0;
 			virtual void pollEvents() = 0;
 
+			virtual void* getNativeHandle() const = 0;
+
 			using CloseCallback = std::function<void()>;
 
 			virtual void setOnClose(CloseCallback callback) = 0;

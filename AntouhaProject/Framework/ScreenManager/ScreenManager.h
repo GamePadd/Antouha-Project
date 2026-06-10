@@ -15,6 +15,6 @@ namespace Ant {
 			void popScreen();
 
 			IScreen* getTop() { return screenStack.top(); }
-			int getScreenCount() { return screenStack.size(); }
+			size_t getScreenCount() { return screenStack.size(); }
 	};
 }

@@ -5,6 +5,7 @@
 #include "../ResourceManager/ResourceManager.h"
 #include  "../ResourceManager/Resources/Texture.h"
 #include "../Event/EventBus.h"
+#include "../ScreenManager/ScreenManager.h"
 
 namespace Ant {
 	struct GameServices {
@@ -17,5 +18,6 @@ namespace Ant {
 		//Managers
 
 		ResourceManager<Texture>* textures;
+		ScreenManager* screens;
 	};
 }

@@ -20,6 +20,8 @@ namespace Ant {
 
 			CloseCallback onClose;
 
+			//friend class SDLRenderer;
+
 		public:
 			SDLWindow(const char* _windowName, int _width, int _height) :
 				windowName(_windowName),
@@ -35,6 +37,7 @@ namespace Ant {
 
 			int getWidth() const override { return width; }
 			int getHeight() const override { return height; }
+			void* getNativeHandle() const override { return renderer; }
 
 			void swapBuffers() override;
 			void pollEvents() override;
