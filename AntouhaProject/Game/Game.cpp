@@ -4,14 +4,10 @@ void TestGame::init(const Ant::GameServices& services) {
 
 }
 
-void TestGame::update(float dt) {
-
-}
-
-void TestGame::render() {
+void TestGame::onUpdate(float dt) {
 
 }
 	
-void TestGame::quit() {
+void TestGame::onQuit() {
 
 }

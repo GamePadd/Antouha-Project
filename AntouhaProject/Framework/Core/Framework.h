@@ -6,24 +6,20 @@
 #include "../ResourceManager/ResourceManager.h"
 #include  "../ResourceManager/Resources/Texture.h"
 #include "IGameLogic.h"
+#include "../ScreenManager/ScreenManager.h"
 
 namespace Ant {
-	enum class WindowRenderer {
-		SDL
-	};
-	
-	enum class RendererAPI {
-		SDL
-	};
+	enum class WindowRenderer {SDL};
+	enum class RendererAPI {SDL};
 
-	struct EngineConfig {
+	struct FrameworkConfig {
 		WindowRenderer window;
 		RendererAPI renderer;
 		const char* title;
 		int width;
 		int height;
 
-		EngineConfig(
+		FrameworkConfig(
 			const WindowRenderer& _window,
 			const RendererAPI& _renderer, 
 			const char* _title = "Default",
@@ -37,27 +33,28 @@ namespace Ant {
 			height(_height) {}
 	};
 
-	class Engine {
+	class Framework {
 		private:
 			IWindow* window;
 			IRenderer* renderer;
 
 			ResourceManager<Texture> textureManager;
 
-			EngineConfig config;
+			FrameworkConfig config;
 
 			EventBus eventBus;
 
-			//GameLogic
+			//Game
 
 			IGameLogic* game;
+			ScreenManager screenManager;
 
 			void CreateWindow();
 			void CreateRenderer();
 
 		public:
-			Engine(const EngineConfig&, IGameLogic*);
-			~Engine();
+			Framework(const FrameworkConfig&, IGameLogic*);
+			~Framework();
 			void run();
 	};
 }

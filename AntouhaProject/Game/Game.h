@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "../Engine/EngineH.h"
+#include "../Framework/FrameworkH.h"
 
 class TestGame : public Ant::IGameLogic {
 	private:
@@ -10,8 +10,7 @@ class TestGame : public Ant::IGameLogic {
 		Ant::EventBus* events;
 
 	public:
-		void init(const Ant::GameServices&) override;
-		void update(float) override;
-		void render() override;
-		void quit() override;
+		void init(const Ant::GameServices& services) override;
+		void onUpdate(float dt) override;
+		void onQuit() override;
 };

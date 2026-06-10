@@ -1,4 +1,4 @@
-#include "Engine.h"
+#include "Framework.h"
 #include "../Window/SDLWindow.h"
 #include "../Renderer/SDLRenderer.h"
 #include "../Event/Events.h"
@@ -6,7 +6,7 @@
 #include <chrono>
 
 namespace Ant {
-	Engine::Engine(const EngineConfig& cfg, IGameLogic* _game) : config(cfg), game(_game) {
+	Framework::Framework(const FrameworkConfig& cfg, IGameLogic* _game) : config(cfg), game(_game) {
 		CreateWindow();
 		CreateRenderer();
 
@@ -15,12 +15,13 @@ namespace Ant {
 		});
 	}
 
-	Engine::~Engine() {
+	Framework::~Framework() {
 		delete window;
 		delete renderer;
+		delete game;
 	}
 
-	void Engine::CreateWindow() {
+	void Framework::CreateWindow() {
 		switch (config.window) {
 			case WindowRenderer::SDL:
 				window = new SDLWindow(config.title, config.width, config.height);
@@ -30,7 +31,7 @@ namespace Ant {
 		window->init();
 	}
 
-	void Engine::CreateRenderer() {
+	void Framework::CreateRenderer() {
 		switch (config.renderer) {
 			case RendererAPI::SDL:
 				renderer = new SDLRenderer(window);
@@ -38,7 +39,7 @@ namespace Ant {
 		}
 	}
 
-	void Engine::run() {
+	void Framework::run() {
 		//Game init
 		GameServices services;
 		services.window = window;
@@ -73,13 +74,17 @@ namespace Ant {
 
 			//Update logic
 
-			game->update(dt);
+			game->onUpdate(dt);
 
-			//Render screen
-			game->render();
+			if (screenManager.getScreenCount() != 0) {
+				IScreen* scr = screenManager.getTop();
+				scr->onUpdate(dt);
+				scr->onRender();
+			}
+
 			window->swapBuffers();
 		}
 
-		game->quit();
+		game->onQuit();
 	}
 }
