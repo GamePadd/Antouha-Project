@@ -31,6 +31,14 @@ namespace Ant {
 				eventQueue.push(std::make_unique<T>(std::forward<T>(event)));
 			}
 
+			template <typename T>
+			void fire(const T& e) {
+				size_t id = typeid(T).hash_code();
+				for (auto& it : handlers[id]) {
+					it(e);
+				}
+			}
+
 			void process();
 	};
 }

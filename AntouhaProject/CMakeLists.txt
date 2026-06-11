@@ -24,7 +24,6 @@ set(HEADERS
 	"Framework/Core/IGameLogic.h"
 	"Framework/InputService/InputService.h"
 	"Framework/InputService/KeyCodes.h"
-	"Framework/InputService/IInputService.h"
 	"Framework/Event/Events.h"
 	"Framework/FrameworkH.h"
 	"Framework/ScreenManager/ScreenManager.h"

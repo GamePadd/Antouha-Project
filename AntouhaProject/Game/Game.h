@@ -9,6 +9,7 @@ class TestScreen : public Ant::IScreen {
 		Ant::ResourceManager<Ant::Texture>* textures;
 		Ant::EventBus* events;
 		Ant::ScreenManager* screens;
+		Ant::InputService* input;
 
 		//Textures
 
@@ -23,20 +24,31 @@ class TestScreen : public Ant::IScreen {
 			textures = services.textures;
 			events = services.eventBus;
 			screens = services.screens;
+			input = services.input;
 
 			//Load textures
 
 			textures->load("bulba", (SDL_Renderer*)window->getNativeHandle(), "bulba.jpg");
 			bulba = textures->get("bulba");
+
+			//Input monitor
+
+			input->addTrackingKey(ANT_W);
 		}
 
 		void onUpdate(float dt) override {
+			if (input->isKeyPressed(ANT_W)) {
+				SDL_Log("W PRESSED!\n");
+			}
 
+			if (input->isKeyReleased(ANT_W)) {
+				SDL_Log("W RELEASED!\n");
+			}
 		}
 
 		void onRender() override {
-			for (int i = 0; i < 2000; i++) {
-				renderer->QueueTexture(bulba, bulbaPos, bulbaSize, 1);
+			for (int i = 0; i < 5000; i++) {
+				renderer->QueueTexture(bulba, bulbaPos, bulbaSize, 25);
 			}
 		}
 
@@ -52,6 +64,7 @@ class TestGame : public Ant::IGameLogic {
 		Ant::ResourceManager<Ant::Texture>* textures;
 		Ant::EventBus* events;
 		Ant::ScreenManager* screens;
+		Ant::InputService* input;
 
 	public:
 		void init(const Ant::GameServices& services) override {
@@ -60,6 +73,7 @@ class TestGame : public Ant::IGameLogic {
 			textures = services.textures;
 			events = services.eventBus;
 			screens = services.screens;
+			input = services.input;
 
 			Ant::IScreen* mainScr = new TestScreen();
 			mainScr->init(services);

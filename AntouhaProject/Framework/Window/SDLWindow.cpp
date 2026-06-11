@@ -1,4 +1,5 @@
 #include "SDLWindow.h"
+#include "../Event/Events.h"
 
 namespace Ant {
 	bool SDLWindow::init() {
@@ -32,6 +33,10 @@ namespace Ant {
 		SDL_zero(e);
 
 		while (SDL_PollEvent(&e)) {
+			if (e.type == SDL_EVENT_KEY_DOWN || e.type == SDL_EVENT_KEY_UP) {
+				eventBus->fire<PollEvent>(PollEvent{ e });
+			}
+
 			switch (e.type) {
 				case SDL_EVENT_QUIT:
 					if (onClose != nullptr) onClose();

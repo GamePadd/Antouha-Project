@@ -7,6 +7,7 @@
 #include  "../ResourceManager/Resources/Texture.h"
 #include "IGameLogic.h"
 #include "../ScreenManager/ScreenManager.h"
+#include "../InputService/InputService.h"
 
 namespace Ant {
 	enum class WindowRenderer {SDL};
@@ -43,6 +44,8 @@ namespace Ant {
 			FrameworkConfig config;
 
 			EventBus eventBus;
+
+			InputService* inputService;
 
 			//Game
 

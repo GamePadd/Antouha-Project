@@ -32,3 +32,8 @@
 //Math
 
 #include "Math/Math.h"
+
+//Input
+
+#include "InputService/InputService.h"
+#include "InputService/KeyCodes.h"

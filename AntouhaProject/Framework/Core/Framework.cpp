@@ -10,6 +10,8 @@ namespace Ant {
 		CreateWindow();
 		CreateRenderer();
 
+		inputService = new InputService(&eventBus);
+
 		window->setOnClose([&]() {
 			eventBus.queueEvent<QuitEvent>(QuitEvent());
 		});
@@ -24,7 +26,7 @@ namespace Ant {
 	void Framework::CreateWindow() {
 		switch (config.window) {
 			case WindowRenderer::SDL:
-				window = new SDLWindow(config.title, config.width, config.height);
+				window = new SDLWindow(config.title, config.width, config.height, &eventBus);
 				break;
 		}
 
@@ -47,6 +49,7 @@ namespace Ant {
 		services.eventBus = &eventBus;
 		services.textures = &textureManager;
 		services.screens = &screenManager;
+		services.input = inputService;
 
 		game->init(services);
 
@@ -62,6 +65,7 @@ namespace Ant {
 		auto lastTime = std::chrono::high_resolution_clock::now();
 
 		while (!quit) {
+			inputService->beginFrame();
 			//dt
 			auto currentTime = std::chrono::high_resolution_clock::now();
 			std::chrono::duration<float> dtDuration = currentTime - lastTime;
@@ -85,7 +89,7 @@ namespace Ant {
 			renderer->RenderAll();
 			window->swapBuffers();
 
-			SDL_Log("fps: %f", 1/dt);
+			//SDL_Log("fps: %f", 1/dt);
 		}
 
 		game->onQuit();

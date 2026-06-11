@@ -4,6 +4,7 @@
 
 #include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
+#include "../Event/EventBus.h"
 
 namespace Ant {
 	class SDLWindow : public IWindow {
@@ -20,15 +21,18 @@ namespace Ant {
 
 			CloseCallback onClose;
 
+			EventBus* eventBus;
+
 			//friend class SDLRenderer;
 
 		public:
-			SDLWindow(const char* _windowName, int _width, int _height) :
+			SDLWindow(const char* _windowName, int _width, int _height, EventBus* _eventBus) :
 				windowName(_windowName),
 				width(_width),
 				height(_height),
 				window{ nullptr },
 				renderer{ nullptr },
+				eventBus {_eventBus},
 				isInitialized{ false } {}
 
 			bool init() override;
