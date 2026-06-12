@@ -2,6 +2,18 @@
 
 #include "../Framework/FrameworkH.h"
 
+
+struct Player {
+	Ant::Vec2f pos;
+	Ant::Vec2f size;
+
+	Ant::Texture* sprite;
+};
+
+struct GameContext {
+	Player ply;
+};
+
 class TestScreen : public Ant::IScreen {
 	private:
 		Ant::IWindow* window;
@@ -11,13 +23,10 @@ class TestScreen : public Ant::IScreen {
 		Ant::ScreenManager* screens;
 		Ant::InputService* input;
 
-		//Textures
-
-		Ant::Texture* bulba = nullptr;
-		Ant::Vec2f bulbaPos = Ant::Vec2f{ 125.0f,125.0f };
-		Ant::Vec2f bulbaSize = Ant::Vec2f{ 255.0f,255.0f };
+		GameContext& context;
 
 	public:
+		TestScreen(GameContext& _context) : context{_context} {}
 		void init(const Ant::GameServices& services) override {
 			window = services.window;
 			renderer = services.renderer;
@@ -29,27 +38,25 @@ class TestScreen : public Ant::IScreen {
 			//Load textures
 
 			textures->load("bulba", (SDL_Renderer*)window->getNativeHandle(), "bulba.jpg");
-			bulba = textures->get("bulba");
+			context.ply.sprite = textures->get("bulba");
+			context.ply.pos = Ant::Vec2f(25.0f, 25.0f);
+			context.ply.size = Ant::Vec2f(55.0f, 55.0f);
 
 			//Input monitor
 
 			input->addTrackingKey(ANT_W);
+			input->addTrackingKey(ANT_A);
+			input->addTrackingKey(ANT_S);
+			input->addTrackingKey(ANT_D);
 		}
 
 		void onUpdate(float dt) override {
-			if (input->isKeyPressed(ANT_W)) {
-				SDL_Log("W PRESSED!\n");
-			}
-
-			if (input->isKeyReleased(ANT_W)) {
-				SDL_Log("W RELEASED!\n");
-			}
+			context.ply.pos.x += (input->isKeyDown(ANT_D) + (-input->isKeyDown(ANT_A))) * dt * 228;
+			context.ply.pos.y += (input->isKeyDown(ANT_S) + (-input->isKeyDown(ANT_W))) * dt * 228;
 		}
 
 		void onRender() override {
-			for (int i = 0; i < 5000; i++) {
-				renderer->QueueTexture(bulba, bulbaPos, bulbaSize, 25);
-			}
+			renderer->QueueTexture(context.ply.sprite, context.ply.pos, context.ply.size, 1);
 		}
 
 		void onClose() override {
@@ -66,6 +73,8 @@ class TestGame : public Ant::IGameLogic {
 		Ant::ScreenManager* screens;
 		Ant::InputService* input;
 
+		GameContext context;
+
 	public:
 		void init(const Ant::GameServices& services) override {
 			window = services.window;
@@ -75,7 +84,7 @@ class TestGame : public Ant::IGameLogic {
 			screens = services.screens;
 			input = services.input;
 
-			Ant::IScreen* mainScr = new TestScreen();
+			Ant::IScreen* mainScr = new TestScreen(context);
 			mainScr->init(services);
 			screens->pushScreen(mainScr);
 		}

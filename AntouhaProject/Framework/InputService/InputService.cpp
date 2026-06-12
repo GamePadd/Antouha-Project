@@ -23,19 +23,16 @@ namespace Ant {
 
 	void InputService::addTrackingKey(KeyCode code) {
 		auto it = std::find(keyCodes.begin(), keyCodes.end(), code);
-		if (it == keyCodes.end()) { keyCodes.push_back(code); SDL_Log("Add key %d to tracking", code);}
+		if (it == keyCodes.end()) { keyCodes.push_back(code); SDL_Log("Added key %d to tracking", code);}
 	}
 
 	//TODO: Как-то в будущем изьебнись и сделай тут универсальную обёртку не только под SDL
 
 	void InputService::updateInfo(SDL_Event &e) {
-		for (auto it : keyCodes) {
-			if (e.type == SDL_EVENT_KEY_DOWN || e.type == SDL_EVENT_KEY_UP) {
-				auto itt = std::find(keyCodes.begin(), keyCodes.end(), e.key.key);
-				if (itt != keyCodes.end()) {
-					currentState[it] = (e.type == SDL_EVENT_KEY_DOWN);
-					break;
-				}
+		if (e.type == SDL_EVENT_KEY_DOWN || e.type == SDL_EVENT_KEY_UP) {
+			auto itt = std::find(keyCodes.begin(), keyCodes.end(), e.key.key);
+			if (itt != keyCodes.end()) {
+				currentState[*itt] = (e.type == SDL_EVENT_KEY_DOWN);
 			}
 		}
 	}
