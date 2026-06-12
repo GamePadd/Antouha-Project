@@ -80,6 +80,10 @@ namespace Ant {
 
 			game->onUpdate(dt);
 
+			//Rendering
+
+			renderer->Clear();
+
 			if (screenManager.getScreenCount() != 0) {
 				IScreen* scr = screenManager.getTop();
 				scr->onUpdate(dt);

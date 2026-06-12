@@ -51,8 +51,8 @@ class TestScreen : public Ant::IScreen {
 		}
 
 		void onUpdate(float dt) override {
-			context.ply.pos.x += (input->isKeyDown(ANT_D) + (-input->isKeyDown(ANT_A))) * dt * 228;
-			context.ply.pos.y += (input->isKeyDown(ANT_S) + (-input->isKeyDown(ANT_W))) * dt * 228;
+			context.ply.pos += Ant::Vec2f((input->isKeyDown(ANT_D) + (-input->isKeyDown(ANT_A))) * dt * 228, 0);
+			context.ply.pos += Ant::Vec2f(0, (input->isKeyDown(ANT_S) + (-input->isKeyDown(ANT_W))) * dt * 228);
 		}
 
 		void onRender() override {
