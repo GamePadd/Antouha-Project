@@ -6,7 +6,7 @@ int main(int argc, char* argv[])
 {
 	int exitCode{ 0 };
 
-	TestGame* game = new TestGame();
+	AntouhaProject* game = new AntouhaProject();
 	Ant::Framework framework(Ant::FrameworkConfig(Ant::WindowRenderer::SDL, Ant::RendererAPI::SDL, "Test", 640, 480), game);
 	framework.run();
 

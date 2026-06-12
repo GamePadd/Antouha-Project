@@ -15,6 +15,14 @@ namespace Ant {
 
 			return *this;
 		}
+
+		Vec2f operator* (const int value) const {
+			return Vec2f(this->x*(float)value, this->y*(float)value);
+		}
+
+		Vec2f operator* (const float value) const {
+			return Vec2f(this->x*value, this->y*value);
+		}
 	};
 
 	struct Vec2i {
@@ -30,6 +38,14 @@ namespace Ant {
 			this->y += other.y;
 
 			return *this;
+		}
+
+		Vec2i operator* (const int value) const {
+			return Vec2i(this->x * value, this->y * value);
+		}
+
+		Vec2i operator* (const float value) const {
+			return Vec2i(this->x * (int)value, this->y * (int)value);
 		}
 	};
 }
