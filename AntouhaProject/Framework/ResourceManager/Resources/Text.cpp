@@ -29,9 +29,6 @@ namespace Ant {
 		if (font = TTF_OpenFont(fontPath.c_str(), 28); font == nullptr) {
 			SDL_Log("Couldn't load %s! SDL_ttf error: %s\n", fontPath.c_str(), SDL_GetError());
 		}
-		else {
-			SDL_Log("Changed text font to %s\n", path.c_str());
-		}
 	}
 
 	bool Text::updateText(std::string _text, SDL_Color color) {
@@ -50,7 +47,6 @@ namespace Ant {
 			else {
 				width = textSurface->w;
 				height = textSurface->h;
-				SDL_Log("Successfully generated text texture: %s\n", text.c_str());
 			}
 
 			SDL_DestroySurface(textSurface);

@@ -38,7 +38,11 @@ namespace Ant {
 		SDL_zero(e);
 
 		while (SDL_PollEvent(&e)) {
-			if (e.type == SDL_EVENT_KEY_DOWN || e.type == SDL_EVENT_KEY_UP) {
+			if (e.type == SDL_EVENT_KEY_DOWN ||
+				e.type == SDL_EVENT_KEY_UP ||
+				e.type == SDL_EVENT_MOUSE_MOTION ||
+				e.type == SDL_EVENT_MOUSE_BUTTON_DOWN ||
+				e.type == SDL_EVENT_MOUSE_BUTTON_UP) {
 				eventBus->fire<PollEvent>(PollEvent{ e });
 			}
 

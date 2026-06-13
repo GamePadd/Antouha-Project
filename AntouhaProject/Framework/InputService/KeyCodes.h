@@ -1,5 +1,11 @@
 #pragma once
 
+//Mouse
+
+#define ANT_BUTTON_LEFT 1
+#define ANT_BUTTON_RIGHT 3
+#define ANT_BUTTON_MIDDLE 2
+
 #define ANT_UNKNOWN                0x00000000u /**< 0 */
 #define ANT_RETURN                 0x0000000du /**< '\r' */
 #define ANT_ESCAPE                 0x0000001bu /**< '\x1B' */

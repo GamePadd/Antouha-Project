@@ -34,7 +34,7 @@ namespace Ant {
 			void* get() const override { return textTexture; }
 
 			void setFont(std::string path);
-			bool updateText(std::string text, SDL_Color textColor);
+			bool updateText(std::string text, SDL_Color textColor = SDL_Color(255, 255, 255, 255));
 			void free();
 
 			int getWidth() { return width; }

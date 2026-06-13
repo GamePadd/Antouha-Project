@@ -152,11 +152,11 @@ class GameScreen : public Ant::IScreen {
 
 			//Input monitor
 
-			input->addTrackingKey(ANT_W);
-			input->addTrackingKey(ANT_A);
-			input->addTrackingKey(ANT_S);
-			input->addTrackingKey(ANT_D);
-			input->addTrackingKey(ANT_SPACE);
+			input->RegisterKey(ANT_W);
+			input->RegisterKey(ANT_A);
+			input->RegisterKey(ANT_S);
+			input->RegisterKey(ANT_D);
+			input->RegisterKey(ANT_SPACE);
 		}
 
 		void onUpdate(float dt) override {
@@ -165,18 +165,13 @@ class GameScreen : public Ant::IScreen {
 			context.ply.pos += Ant::Vec2f((input->isKeyDown(ANT_D) + (-input->isKeyDown(ANT_A))) * dt * 350, 0);
 			context.ply.pos += Ant::Vec2f(0, (input->isKeyDown(ANT_S) + (-input->isKeyDown(ANT_W))) * dt * 350);
 			
-			if (input->isKeyPressed(ANT_SPACE)) {
+			if (input->isMousePressed(ANT_BUTTON_LEFT)) {
 				context.bullets.shoot(context.ply.pos + Ant::Vec2f(25.0f,0), Ant::Vec2f(10.0f, 10.0f), Ant::Vec2f(0.0f, -27.0f));
 				context.bullets.shoot(context.ply.pos + Ant::Vec2f(25.0f, 0), Ant::Vec2f(10.0f, 10.0f), Ant::Vec2f(8.0f, -27.0f));
 				context.bullets.shoot(context.ply.pos + Ant::Vec2f(25.0f, 0), Ant::Vec2f(10.0f, 10.0f), Ant::Vec2f(-8.0f, -27.0f));
 			}
 
-			if (input->isKeyDown(ANT_SPACE)) {
-				testText->updateText("ALLAH!", SDL_Color(255, 0, 0, 255));
-			}
-			else {
-				testText->updateText("test", SDL_Color(255, 255, 255, 255));
-			}
+			testText->updateText("MouseXY: " + std::to_string(input->getMouseX()) + " " + std::to_string(input->getMouseY()) + " Left pressed: " + std::to_string(input->isMouseDown(ANT_BUTTON_LEFT)));
 
 			context.bullets.updateAll(dt);
 		}
@@ -190,7 +185,7 @@ class GameScreen : public Ant::IScreen {
 
 			Ant::Text* testText = text->get("testText");
 
-			renderer->QueueText(testText,Ant::Vec2f(320.0f,5.0f), Ant::Vec2f(testText->getWidth(), testText->getHeight()), 2);
+			renderer->QueueText(testText,Ant::Vec2f(5.0f,5.0f), Ant::Vec2f(testText->getWidth(), testText->getHeight()), 2);
 		}
 
 		void onClose() override {
