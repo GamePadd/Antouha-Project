@@ -145,7 +145,7 @@ class GameScreen : public Ant::IScreen {
 			text->load("testText", (SDL_Renderer*)window->getNativeHandle(), "test", SDL_Color(255,255,255,255), "arialmt.ttf");
 
 			context.ply.sprite = textures->get("bulba");
-			context.ply.pos = Ant::Vec2f(25.0f, 25.0f);
+			context.ply.pos = Ant::Vec2f(320.0f, 240.0f);
 			context.ply.size = Ant::Vec2f(55.0f, 55.0f);
 
 			context.bullets.setTexture(textures->get("bullet"));
@@ -185,7 +185,7 @@ class GameScreen : public Ant::IScreen {
 
 			Ant::Text* testText = text->get("testText");
 
-			renderer->QueueText(testText,Ant::Vec2f(320.0f,25.0f), Ant::Vec2f(testText->getWidth()/1.5, testText->getHeight()/1.5), 2);
+			renderer->QueueText(testText,Ant::Vec2f(320.0f,25.0f), Ant::Vec2f(testText->getWidth()/1.2, testText->getHeight()/1.2), 2);
 		}
 
 		void onClose() override {
