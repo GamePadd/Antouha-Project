@@ -166,9 +166,9 @@ class GameScreen : public Ant::IScreen {
 			context.ply.pos += Ant::Vec2f(0, (input->isKeyDown(ANT_S) + (-input->isKeyDown(ANT_W))) * dt * 350);
 			
 			if (input->isMousePressed(ANT_BUTTON_LEFT)) {
-				context.bullets.shoot(context.ply.pos + Ant::Vec2f(25.0f,0), Ant::Vec2f(10.0f, 10.0f), Ant::Vec2f(0.0f, -27.0f));
-				context.bullets.shoot(context.ply.pos + Ant::Vec2f(25.0f, 0), Ant::Vec2f(10.0f, 10.0f), Ant::Vec2f(8.0f, -27.0f));
-				context.bullets.shoot(context.ply.pos + Ant::Vec2f(25.0f, 0), Ant::Vec2f(10.0f, 10.0f), Ant::Vec2f(-8.0f, -27.0f));
+				context.bullets.shoot(context.ply.pos, Ant::Vec2f(10.0f, 10.0f), Ant::Vec2f(0.0f, -27.0f));
+				context.bullets.shoot(context.ply.pos, Ant::Vec2f(10.0f, 10.0f), Ant::Vec2f(8.0f, -27.0f));
+				context.bullets.shoot(context.ply.pos, Ant::Vec2f(10.0f, 10.0f), Ant::Vec2f(-8.0f, -27.0f));
 			}
 
 			testText->updateText("MouseXY: " + std::to_string(input->getMouseX()) + " " + std::to_string(input->getMouseY()) + " Left pressed: " + std::to_string(input->isMouseDown(ANT_BUTTON_LEFT)));
@@ -185,7 +185,7 @@ class GameScreen : public Ant::IScreen {
 
 			Ant::Text* testText = text->get("testText");
 
-			renderer->QueueText(testText,Ant::Vec2f(5.0f,5.0f), Ant::Vec2f(testText->getWidth(), testText->getHeight()), 2);
+			renderer->QueueText(testText,Ant::Vec2f(320.0f,25.0f), Ant::Vec2f(testText->getWidth()/1.5, testText->getHeight()/1.5), 2);
 		}
 
 		void onClose() override {
