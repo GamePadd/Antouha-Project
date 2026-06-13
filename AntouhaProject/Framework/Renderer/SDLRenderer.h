@@ -25,5 +25,6 @@ namespace Ant {
 
 			void Clear() override;
 			void QueueTexture(const Texture* texture, const Vec2f& pos, const Vec2f& size, int layer) override;
+			void QueueText(const Text* text, const Vec2f& pos, const Vec2f& size, int layer) override;
 	};
 }

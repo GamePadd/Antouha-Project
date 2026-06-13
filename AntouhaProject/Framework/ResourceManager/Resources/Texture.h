@@ -17,7 +17,7 @@ namespace Ant {
 			std::string path;
 		public:
 			Texture(SDL_Renderer* _renderer, const char* _path) : 
-				renderer(std::move(_renderer)), 
+				renderer(_renderer), 
 				path(std::move(_path)),
 				texture{ nullptr },
 				width{ 0 },

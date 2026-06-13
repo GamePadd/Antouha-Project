@@ -1,5 +1,6 @@
 ﻿set(SOURCES
 	"Framework/ResourceManager/Resources/Texture.cpp"
+	"Framework/ResourceManager/Resources/Text.cpp"
 	"Framework/Event/EventBus.cpp"
 	"Game/main.cpp"
 	"Framework/Window/SDLWindow.cpp"
@@ -14,6 +15,7 @@ set(HEADERS
 	"Framework/ResourceManager/ResourceManager.h"
 	"Framework/ResourceManager/IResource.h"
 	"Framework/ResourceManager/Resources/Texture.h"
+	"Framework/ResourceManager/Resources/Text.h"
 	"Framework/Event/EventBus.h"
 	"Framework/Event/IEvent.h"
 	"Game/Events.h"
@@ -33,4 +35,4 @@ set(HEADERS
 
 add_executable (AntouhaProject ${SOURCES} ${HEADERS})
 target_include_directories(AntouhaProject PRIVATE "${CMAKE_SOURCE_DIR}/thirdparty/GLM")
-target_link_libraries(AntouhaProject PRIVATE SDL3::SDL3 SDL3_image::SDL3_image)
+target_link_libraries(AntouhaProject PRIVATE SDL3::SDL3 SDL3_image::SDL3_image SDL3_ttf::SDL3_ttf)

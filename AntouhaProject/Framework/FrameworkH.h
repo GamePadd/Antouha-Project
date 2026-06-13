@@ -19,6 +19,7 @@
 
 #include "ResourceManager/ResourceManager.h"
 #include "ResourceManager/Resources/Texture.h"
+#include "ResourceManager/Resources/Text.h"
 
 //Screen
 

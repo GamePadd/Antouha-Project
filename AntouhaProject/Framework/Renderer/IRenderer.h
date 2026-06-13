@@ -1,11 +1,12 @@
 #pragma once
 
 #include "../ResourceManager/Resources/Texture.h"
+#include "../ResourceManager/Resources/Text.h"
 #include "../Math/Math.h"
 
 namespace Ant {
 	struct RenderLayerElement {
-		const Texture* texture;
+		SDL_Texture* texture;
 		Vec2f pos;
 		Vec2f size;
 	};
@@ -20,5 +21,6 @@ namespace Ant {
 
 			virtual void Clear() = 0;
 			virtual void QueueTexture(const Texture* texture, const Vec2f& pos, const Vec2f& size, int layer) = 0;
+			virtual void QueueText(const Text* text, const Vec2f& pos, const Vec2f& size, int layer) = 0;
 	};
 }

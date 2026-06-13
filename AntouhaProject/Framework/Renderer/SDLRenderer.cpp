@@ -7,7 +7,12 @@ namespace Ant {
 
 	void SDLRenderer::QueueTexture(const Texture* texture, const Vec2f &pos, const Vec2f &size, int layer) {
 		if (layer < 0 || layer > MAX_LAYERS) { return; }
-		layers[layer].push_back(RenderLayerElement{ texture, pos, size });
+		layers[layer].push_back(RenderLayerElement{ (SDL_Texture*)texture->get(), pos, size});
+	}
+
+	void SDLRenderer::QueueText(const Text* text, const Vec2f& pos, const Vec2f& size, int layer) {
+		if (layer < 0 || layer > MAX_LAYERS) { return; }
+		layers[layer].push_back(RenderLayerElement{ (SDL_Texture*)text->get(), pos, size});
 	}
 
 	void SDLRenderer::RenderAll() {
@@ -15,7 +20,7 @@ namespace Ant {
 			if (layers[i].empty()) { continue; }
 			for (auto& it : layers[i]) {
 				SDL_FRect dstRect{ it.pos.x, it.pos.y, it.size.x, it.size.y };
-				SDL_RenderTexture(renderer, (SDL_Texture*)it.texture->get(), nullptr, &dstRect);
+				SDL_RenderTexture(renderer, it.texture, nullptr, &dstRect);
 			}
 			layers[i].clear();
 		}

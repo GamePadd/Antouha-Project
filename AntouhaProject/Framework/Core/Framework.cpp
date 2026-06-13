@@ -50,6 +50,7 @@ namespace Ant {
 		services.textures = &textureManager;
 		services.screens = &screenManager;
 		services.input = inputService;
+		services.text = &textManager;
 
 		game->init(services);
 

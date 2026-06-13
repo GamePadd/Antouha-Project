@@ -5,6 +5,7 @@
 #include "../Window/IWindow.h"
 #include "../ResourceManager/ResourceManager.h"
 #include  "../ResourceManager/Resources/Texture.h"
+#include "../ResourceManager/Resources/Text.h"
 #include "IGameLogic.h"
 #include "../ScreenManager/ScreenManager.h"
 #include "../InputService/InputService.h"
@@ -40,6 +41,7 @@ namespace Ant {
 			IRenderer* renderer;
 
 			ResourceManager<Texture> textureManager;
+			ResourceManager<Text> textManager;
 
 			FrameworkConfig config;
 

@@ -17,6 +17,11 @@ namespace Ant {
 			else {
 				renderer = SDL_CreateRenderer(window, NULL);
 				SDL_Log("SDL Window initialized!\n");
+
+				if (TTF_Init() == false) {
+					SDL_Log("Can't init a SDL_ttf! SDL_ttf error: %s\n", SDL_GetError());
+					success = false;
+				}
 			}
 		}
 

@@ -116,7 +116,10 @@ class GameScreen : public Ant::IScreen {
 	private:
 		Ant::IWindow* window;
 		Ant::IRenderer* renderer;
+
 		Ant::ResourceManager<Ant::Texture>* textures;
+		Ant::ResourceManager<Ant::Text>* text;
+
 		Ant::EventBus* events;
 		Ant::ScreenManager* screens;
 		Ant::InputService* input;
@@ -132,11 +135,14 @@ class GameScreen : public Ant::IScreen {
 			events = services.eventBus;
 			screens = services.screens;
 			input = services.input;
+			text = services.text;
 
 			//Load textures
 
 			textures->load("bulba", (SDL_Renderer*)window->getNativeHandle(), "bulba.jpg");
 			textures->load("bullet", (SDL_Renderer*)window->getNativeHandle(), "bullet.jpg");
+
+			text->load("testText", (SDL_Renderer*)window->getNativeHandle(), "test", SDL_Color(255,255,255,255), "arialmt.ttf");
 
 			context.ply.sprite = textures->get("bulba");
 			context.ply.pos = Ant::Vec2f(25.0f, 25.0f);
@@ -154,13 +160,22 @@ class GameScreen : public Ant::IScreen {
 		}
 
 		void onUpdate(float dt) override {
-			context.ply.pos += Ant::Vec2f((input->isKeyDown(ANT_D) + (-input->isKeyDown(ANT_A))) * dt * 228, 0);
-			context.ply.pos += Ant::Vec2f(0, (input->isKeyDown(ANT_S) + (-input->isKeyDown(ANT_W))) * dt * 228);
+			Ant::Text* testText = text->get("testText");
+
+			context.ply.pos += Ant::Vec2f((input->isKeyDown(ANT_D) + (-input->isKeyDown(ANT_A))) * dt * 350, 0);
+			context.ply.pos += Ant::Vec2f(0, (input->isKeyDown(ANT_S) + (-input->isKeyDown(ANT_W))) * dt * 350);
 			
 			if (input->isKeyPressed(ANT_SPACE)) {
-				context.bullets.shoot(context.ply.pos + Ant::Vec2f(25.0f,0), Ant::Vec2f(15.0f, 15.0f), Ant::Vec2f(0.0f, -25.0f));
-				context.bullets.shoot(context.ply.pos + Ant::Vec2f(25.0f, 0), Ant::Vec2f(15.0f, 15.0f), Ant::Vec2f(5.0f, -25.0f));
-				context.bullets.shoot(context.ply.pos + Ant::Vec2f(25.0f, 0), Ant::Vec2f(15.0f, 15.0f), Ant::Vec2f(-5.0f, -25.0f));
+				context.bullets.shoot(context.ply.pos + Ant::Vec2f(25.0f,0), Ant::Vec2f(10.0f, 10.0f), Ant::Vec2f(0.0f, -27.0f));
+				context.bullets.shoot(context.ply.pos + Ant::Vec2f(25.0f, 0), Ant::Vec2f(10.0f, 10.0f), Ant::Vec2f(8.0f, -27.0f));
+				context.bullets.shoot(context.ply.pos + Ant::Vec2f(25.0f, 0), Ant::Vec2f(10.0f, 10.0f), Ant::Vec2f(-8.0f, -27.0f));
+			}
+
+			if (input->isKeyDown(ANT_SPACE)) {
+				testText->updateText("ALLAH!", SDL_Color(255, 0, 0, 255));
+			}
+			else {
+				testText->updateText("test", SDL_Color(255, 255, 255, 255));
 			}
 
 			context.bullets.updateAll(dt);
@@ -168,9 +183,14 @@ class GameScreen : public Ant::IScreen {
 
 		void onRender() override {
 			renderer->QueueTexture(context.ply.sprite, context.ply.pos, context.ply.size, 1);
+
 			context.bullets.updateAllCustom([&](Bullet& bullet) {
 				renderer->QueueTexture(bullet.sprite, bullet.pos, bullet.size, 0);
 			});
+
+			Ant::Text* testText = text->get("testText");
+
+			renderer->QueueText(testText,Ant::Vec2f(320.0f,5.0f), Ant::Vec2f(testText->getWidth(), testText->getHeight()), 2);
 		}
 
 		void onClose() override {
@@ -186,6 +206,7 @@ class AntouhaProject : public Ant::IGameLogic {
 		Ant::EventBus* events;
 		Ant::ScreenManager* screens;
 		Ant::InputService* input;
+		Ant::ResourceManager<Ant::Text>* text;
 
 		GameContext context;
 
@@ -197,6 +218,7 @@ class AntouhaProject : public Ant::IGameLogic {
 			events = services.eventBus;
 			screens = services.screens;
 			input = services.input;
+			text = services.text;
 
 			Ant::IScreen* mainScr = new GameScreen(context);
 			mainScr->init(services);
