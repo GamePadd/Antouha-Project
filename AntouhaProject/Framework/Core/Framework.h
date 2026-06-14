@@ -18,21 +18,21 @@ namespace Ant {
 		WindowRenderer window;
 		RendererAPI renderer;
 		const char* title;
-		int width;
-		int height;
+		Vec2i virtualSize;
+		Vec2i actualSize;
 
 		FrameworkConfig(
 			const WindowRenderer& _window,
 			const RendererAPI& _renderer, 
 			const char* _title = "Default",
-			const int& _width = 640,
-			const int& _height = 480
+			const Vec2i& _vs = Vec2i(640,480),
+			const Vec2i& _as = Vec2i(640, 480)
 		) :
 			window(_window),
 			renderer(_renderer),
 			title(_title),
-			width(_width),
-			height(_height) {}
+			virtualSize(_vs),
+			actualSize(_as) {}
 	};
 
 	class Framework {

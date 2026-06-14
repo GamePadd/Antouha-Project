@@ -6,6 +6,7 @@
 #include <SDL3_image/SDL_image.h>
 #include <SDL3_ttf/SDL_ttf.h>
 #include "../Event/EventBus.h"
+#include "../Math/Math.h"
 
 namespace Ant {
 	class SDLWindow : public IWindow {
@@ -15,8 +16,7 @@ namespace Ant {
 
 			const char* windowName;
 
-			int width;
-			int height;
+			Vec2i size;
 
 			bool isInitialized;
 
@@ -27,10 +27,9 @@ namespace Ant {
 			//friend class SDLRenderer;
 
 		public:
-			SDLWindow(const char* _windowName, int _width, int _height, EventBus* _eventBus) :
+			SDLWindow(const char* _windowName, Vec2i _size, EventBus* _eventBus) :
 				windowName(_windowName),
-				width(_width),
-				height(_height),
+				size(_size),
 				window{ nullptr },
 				renderer{ nullptr },
 				eventBus {_eventBus},
@@ -40,8 +39,8 @@ namespace Ant {
 
 			//Getters
 
-			int getWidth() const override { return width; }
-			int getHeight() const override { return height; }
+			int getWidth() const override { return size.x; }
+			int getHeight() const override { return size.y; }
 			void* getNativeHandle() const override { return renderer; }
 
 			void swapBuffers() override;

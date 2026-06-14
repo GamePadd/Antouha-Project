@@ -57,7 +57,7 @@ void Level1::onRender() {
 
 	Ant::Text* testText = text->get("testText");
 
-	renderer->QueueText(testText, Ant::Vec2f(320.0f, 25.0f), Ant::Vec2f(testText->getWidth() / 1.2, testText->getHeight() / 1.2), 2);
+	renderer->QueueText(testText, Ant::Vec2f(320.0f, 25.0f), Ant::Vec2f(testText->getWidth() / 3, testText->getHeight() / 3), 2);
 }
 
 void Level1::onClose() {

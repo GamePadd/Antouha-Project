@@ -26,7 +26,7 @@ namespace Ant {
 	void Framework::CreateWindow() {
 		switch (config.window) {
 			case WindowRenderer::SDL:
-				window = new SDLWindow(config.title, config.width, config.height, &eventBus);
+				window = new SDLWindow(config.title, config.actualSize, &eventBus);
 				break;
 		}
 

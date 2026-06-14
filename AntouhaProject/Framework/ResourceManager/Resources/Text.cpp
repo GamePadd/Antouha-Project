@@ -6,7 +6,7 @@ namespace Ant {
 
 		bool success{ true };
 
-		if (font = TTF_OpenFont(fontPath.c_str(), 28); font == nullptr) {
+		if (font = TTF_OpenFont(fontPath.c_str(), 64); font == nullptr) {
 			SDL_Log("Couldn't load %s! SDL_ttf error: %s\n", fontPath.c_str(), SDL_GetError());
 			success = false;
 		}
@@ -25,8 +25,10 @@ namespace Ant {
 		textTexture = nullptr;
 	}
 
+	//TODO: в TTF_OpenFont добавь нормальный выбор размера шрифта для рендера а не константу, и в setFont и в load
+
 	void Text::setFont(std::string path) {
-		if (font = TTF_OpenFont(fontPath.c_str(), 28); font == nullptr) {
+		if (font = TTF_OpenFont(fontPath.c_str(), 64); font == nullptr) {
 			SDL_Log("Couldn't load %s! SDL_ttf error: %s\n", fontPath.c_str(), SDL_GetError());
 		}
 	}

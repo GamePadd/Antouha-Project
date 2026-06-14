@@ -21,6 +21,9 @@ namespace Ant {
 
 			template <typename... Args>
 			void load(const std::string& resourceName, Args&&... args) {
+				auto it = resources.find(resourceName);
+				if (it != resources.end()) { return; }
+
 				T* resource = new T (std::forward<Args>(args)...);
 
 				if (resource->load()) {

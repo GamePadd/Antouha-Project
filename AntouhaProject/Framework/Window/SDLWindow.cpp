@@ -10,7 +10,7 @@ namespace Ant {
 			success = false;
 		}
 		else {
-			if (window = SDL_CreateWindow(windowName, width, height, 0); window == nullptr) {
+			if (window = SDL_CreateWindow(windowName, size.x, size.y, 0); window == nullptr) {
 				SDL_Log("Window could not created! SDL Error: %s\n", SDL_GetError());
 				success = false;
 			}

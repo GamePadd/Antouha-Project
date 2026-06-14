@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "Levels/Level1.h"
+#include "Levels/MainMenu.h"
 
 void AntouhaProject::init(const Ant::GameServices& services) {
 	window = services.window;
@@ -10,7 +11,7 @@ void AntouhaProject::init(const Ant::GameServices& services) {
 	input = services.input;
 	text = services.text;
 
-	Ant::IScreen* mainScr = new Level1(context);
+	Ant::IScreen* mainScr = new MainMenu(context);
 	mainScr->init(services);
 	screens->pushScreen(mainScr);
 }

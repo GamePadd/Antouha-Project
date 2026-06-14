@@ -12,6 +12,9 @@ namespace Ant {
 			IWindow* context;
 			SDL_Renderer* renderer;
 
+			Vec2i virtualSize;
+			Vec2i actualSize;
+
 			std::vector<RenderLayerElement> layers[MAX_LAYERS];
 
 			void RenderAll() override;
