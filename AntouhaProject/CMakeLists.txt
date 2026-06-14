@@ -2,23 +2,26 @@
 	"Framework/ResourceManager/Resources/Texture.cpp"
 	"Framework/ResourceManager/Resources/Text.cpp"
 	"Framework/Event/EventBus.cpp"
-	"Game/main.cpp"
 	"Framework/Window/SDLWindow.cpp"
 	"Framework/Renderer/SDLRenderer.cpp"
 	"Framework/Core/Framework.cpp"
 	"Framework/InputService/InputService.cpp"
 	"Framework/ScreenManager/ScreenManager.cpp"
+
+	"Game/main.cpp"
+	"Game/BulletSystem/BulletManager.cpp"
+	"Game/BulletSystem/BulletPool.cpp"
+	"Game/Levels/Level1.cpp"
+	"Game/Game.cpp"
 )
 
 set(HEADERS
-	"Game/Game.h"
 	"Framework/ResourceManager/ResourceManager.h"
 	"Framework/ResourceManager/IResource.h"
 	"Framework/ResourceManager/Resources/Texture.h"
 	"Framework/ResourceManager/Resources/Text.h"
 	"Framework/Event/EventBus.h"
 	"Framework/Event/IEvent.h"
-	"Game/Events.h"
 	"Framework/Window/SDLWindow.h"
 	"Framework/Window/IWindow.h"
 	"Framework/Renderer/SDLRenderer.h"
@@ -31,6 +34,16 @@ set(HEADERS
 	"Framework/ScreenManager/ScreenManager.h"
 	"Framework/ScreenManager/IScreen.h"
 	"Framework/Math/Math.h"
+
+	"Game/Game.h"
+	"Game/Events.h"
+	"Game/Context.h"
+	"Game/GameStructures.h"
+	"Game/BulletSystem/BulletManager.h"
+	"Game/BulletSystem/BulletPool.h"
+	"Game/UI/Button.h"
+	"Game/UI/IButton.h"
+	"Game/Levels/Level1.h"
 )
 
 add_executable (AntouhaProject ${SOURCES} ${HEADERS})
