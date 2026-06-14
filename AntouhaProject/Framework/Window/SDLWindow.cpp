@@ -10,7 +10,7 @@ namespace Ant {
 			success = false;
 		}
 		else {
-			if (window = SDL_CreateWindow(windowName, size.x, size.y, 0); window == nullptr) {
+			if (window = SDL_CreateWindow(windowName, size.x, size.y, SDL_WINDOW_RESIZABLE); window == nullptr) {
 				SDL_Log("Window could not created! SDL Error: %s\n", SDL_GetError());
 				success = false;
 			}
@@ -49,6 +49,10 @@ namespace Ant {
 			switch (e.type) {
 				case SDL_EVENT_QUIT:
 					if (onClose != nullptr) onClose();
+					break;
+				case SDL_EVENT_WINDOW_RESIZED:
+					size.x = e.window.data1;
+					size.y = e.window.data2;
 					break;
 			}
 		}
