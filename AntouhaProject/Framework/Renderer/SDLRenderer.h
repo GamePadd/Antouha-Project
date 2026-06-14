@@ -13,13 +13,12 @@ namespace Ant {
 			SDL_Renderer* renderer;
 
 			Vec2i virtualSize;
-			Vec2i actualSize;
 
 			std::vector<RenderLayerElement> layers[MAX_LAYERS];
 
 			void RenderAll() override;
 		public:
-			SDLRenderer(IWindow* _context) : context(_context) { 
+			SDLRenderer(IWindow* _context, Vec2i vs) : context(_context), virtualSize(vs) {
 				renderer = (SDL_Renderer*)context->getNativeHandle(); 
 				for (int i = 0; i < MAX_LAYERS; i++) {
 					layers[i].reserve(RESERVE_SPRITES);

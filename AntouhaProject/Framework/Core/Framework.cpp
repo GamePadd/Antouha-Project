@@ -10,7 +10,7 @@ namespace Ant {
 		CreateWindow();
 		CreateRenderer();
 
-		inputService = new InputService(&eventBus);
+		inputService = new InputService(&eventBus, window, config.virtualSize);
 
 		window->setOnClose([&]() {
 			eventBus.queueEvent<QuitEvent>(QuitEvent());
@@ -36,7 +36,7 @@ namespace Ant {
 	void Framework::CreateRenderer() {
 		switch (config.renderer) {
 			case RendererAPI::SDL:
-				renderer = new SDLRenderer(window);
+				renderer = new SDLRenderer(window, config.virtualSize);
 				break;
 		}
 	}
