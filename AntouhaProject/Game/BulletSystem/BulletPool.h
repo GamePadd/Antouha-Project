@@ -17,8 +17,7 @@ public:
 		}
 	}
 
-	void resetBullet(Bullet& bullet);
 	Bullet* acquire();
-	void release(Bullet* bullet) { resetBullet(*bullet); }
+	void release(Bullet* bullet) { bullet->Reset(); }
 	void forEachActive(std::function<void(Bullet&)> callback);
 };

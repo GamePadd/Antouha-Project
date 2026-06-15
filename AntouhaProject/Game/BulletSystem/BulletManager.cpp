@@ -17,11 +17,11 @@ void BulletManager::updateAll(float dt) {
 	// x 32 - 416 y 32 - 448
 
 	pool->forEachActive([this, dt](Bullet& bullet) {
-		bullet.pos += bullet.velocity * dt * 25;
+		bullet.Update(dt);
 
 		if (bullet.pos.y < 32 || bullet.pos.y > 448 ||
 			bullet.pos.x < 32 || bullet.pos.x > 416) {
-			pool->resetBullet(bullet);
+			bullet.Reset();
 		}
 	});
 }

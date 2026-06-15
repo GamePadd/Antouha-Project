@@ -28,7 +28,7 @@ struct Player {
 		pos += Ant::Vec2f((input->isKeyDown(ANT_RIGHT) + (-input->isKeyDown(ANT_LEFT))) * dt * speed, 0);
 		pos += Ant::Vec2f(0, (input->isKeyDown(ANT_DOWN) + (-input->isKeyDown(ANT_UP))) * dt * speed);
 
-		if (pos.x > 416) {pos.x = 416; }
+		if (pos.x > 416) { pos.x = 416; }
 		if (pos.x < 32) { pos.x = 32; }
 		if (pos.y > 448) { pos.y = 448; }
 		if (pos.y < 32) { pos.y = 32; }
@@ -50,6 +50,16 @@ struct Bullet {
 	Ant::Vec2f size;
 
 	Ant::Texture* sprite;
+
+	void Update(float dt) {
+		pos += velocity * dt * 25;
+	}
+
+	void Reset() {
+		active = false;
+		pos = Ant::Vec2f(0.0f, 0.0f);
+		velocity = Ant::Vec2f(0.0f, 0.0f);
+	}
 
 	bool active;
 };
