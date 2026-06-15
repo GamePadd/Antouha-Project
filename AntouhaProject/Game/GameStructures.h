@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Framework/FrameworkH.h"
+#include <cmath>
 
 struct LevelResources {
 	Ant::Texture* Background;
@@ -32,8 +33,21 @@ struct Player {
 		if (input->isKeyPressed(ANT_LSHIFT)) { speed = 225; }
 		if (input->isKeyReleased(ANT_LSHIFT)) { speed = 350; }
 
-		pos += Ant::Vec2f((input->isKeyDown(ANT_RIGHT) + (-input->isKeyDown(ANT_LEFT))) * dt * speed, 0);
-		pos += Ant::Vec2f(0, (input->isKeyDown(ANT_DOWN) + (-input->isKeyDown(ANT_UP))) * dt * speed);
+		bool up = input->isKeyDown(ANT_UP);
+		bool down = input->isKeyDown(ANT_DOWN);
+		bool left = input->isKeyDown(ANT_LEFT);
+		bool right = input->isKeyDown(ANT_RIGHT);
+
+		float dx = right - left;
+		float dy = down - up;
+
+		if (dx != 0.0f && dy != 0.0f) {
+			float len = sqrt(dx * dx + dy * dy);
+			dx /= len;
+			dy /= len;
+		}
+
+		pos += Ant::Vec2f(dx*speed*dt,dy*speed*dt);
 
 		if (pos.x > 416) { pos.x = 416; }
 		if (pos.x < 32) { pos.x = 32; }
