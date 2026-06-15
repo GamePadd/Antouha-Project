@@ -4,9 +4,11 @@
 #include "../Context.h"
 
 
-struct LevelUI {
+struct LevelResources {
 	Ant::Texture* Background;
 	Ant::Texture* Frame;
+
+	std::unordered_map<std::string, Ant::Texture*> bulletsTextures;
 };
 
 class Level1 : public Ant::IScreen {
@@ -25,7 +27,7 @@ private:
 
 	//Level
 
-	LevelUI UITextures;
+	LevelResources levelResources;
 
 public:
 	//IGameLogic

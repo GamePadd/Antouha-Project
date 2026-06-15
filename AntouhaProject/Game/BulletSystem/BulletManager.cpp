@@ -1,6 +1,6 @@
 #include "BulletManager.h"
 
-void BulletManager::shoot(const Ant::Vec2f& pos, const Ant::Vec2f& size, const Ant::Vec2f& velocity) {
+void BulletManager::shoot(const Ant::Vec2f& pos, const Ant::Vec2f& size, const Ant::Vec2f& velocity, Ant::Texture* bulletTexture) {
 	Bullet* bul = pool->acquire();
 	if (bul) {
 		bul->pos = pos;

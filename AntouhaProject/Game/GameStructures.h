@@ -10,7 +10,7 @@ struct Player {
 	
 	//Mechanix
 	
-	Uint64 shootCooldown = 5;
+	Uint64 shootCooldown = 50;
 	int speed = 350;
 
 	//Other

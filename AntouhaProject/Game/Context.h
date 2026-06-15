@@ -12,5 +12,5 @@ struct GameContext {
 	BulletPool pool;
 	BulletManager bullets;
 
-	GameContext() : bullets(nullptr, &pool) {}
+	GameContext() : bullets(&pool) {}
 };
