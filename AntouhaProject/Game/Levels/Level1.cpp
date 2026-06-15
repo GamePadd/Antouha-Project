@@ -46,7 +46,15 @@ void Level1::init(const Ant::GameServices& services) {
 	input->RegisterKey(ANT_A);
 	input->RegisterKey(ANT_S);
 	input->RegisterKey(ANT_D);
+
+	input->RegisterKey(ANT_UP);
+	input->RegisterKey(ANT_LEFT);
+	input->RegisterKey(ANT_DOWN);
+	input->RegisterKey(ANT_RIGHT);
+
 	input->RegisterKey(ANT_SPACE);
+	input->RegisterKey(ANT_LSHIFT);
+	input->RegisterKey(ANT_Z);
 }
 
 //TODO: Вынеси блять потом все по нормальным методам для players и тд нахуй, а то че за хуйня то блять дебил костыльный
@@ -56,15 +64,7 @@ void Level1::onUpdate(float dt) {
 
 	//Controls
 
-	context.ply.pos += Ant::Vec2f((input->isKeyDown(ANT_D) + (-input->isKeyDown(ANT_A))) * dt * 350, 0);
-	context.ply.pos += Ant::Vec2f(0, (input->isKeyDown(ANT_S) + (-input->isKeyDown(ANT_W))) * dt * 350);
-
-	if (context.ply.pos.x > 416) { context.ply.pos.x = 416; }
-	if (context.ply.pos.x < 32) { context.ply.pos.x = 32; }
-	if (context.ply.pos.y > 448) { context.ply.pos.y = 448; }
-	if (context.ply.pos.y < 32) { context.ply.pos.y = 32; }
-
-	if (input->isMousePressed(ANT_BUTTON_LEFT)) {
+	if (context.ply.Update(input, dt)) {
 		context.bullets.shoot(context.ply.pos, Ant::Vec2f(10.0f, 10.0f), Ant::Vec2f(0.0f, -27.0f));
 		context.bullets.shoot(context.ply.pos, Ant::Vec2f(10.0f, 10.0f), Ant::Vec2f(8.0f, -27.0f));
 		context.bullets.shoot(context.ply.pos, Ant::Vec2f(10.0f, 10.0f), Ant::Vec2f(-8.0f, -27.0f));

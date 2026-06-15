@@ -4,6 +4,8 @@
 #include "IScreen.h"
 
 namespace Ant {
+	//TODO: сделай очередь, иначе экран сможет сам себя удалить и будет UB
+
 	class ScreenManager {
 		private:
 			std::stack<IScreen*> screenStack;
