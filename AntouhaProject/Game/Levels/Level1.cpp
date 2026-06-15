@@ -11,7 +11,7 @@
 */
 
 void Level1::DrawUI() {
-	renderer->QueueTexture(levelResources.Background, Ant::Vec2f(320.0f, 240.0f), Ant::Vec2f(640.0f, 480.0f), 0);
+	renderer->QueueTexture(levelResources.Background, Ant::Vec2f(320.0f, 240.0f), Ant::Vec2f(640.0f, 480.0f), 0, 55);
 	renderer->QueueTexture(levelResources.Frame, Ant::Vec2f(320.0f, 240.0f), Ant::Vec2f(640.0f, 480.0f), 20);
 }
 
