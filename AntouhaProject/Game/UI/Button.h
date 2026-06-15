@@ -30,7 +30,7 @@ class Button : public IButton {
 
 		bool isServicesInited;
 	public:
-		Button(const Ant::GameServices& services, std::string textResourceName, std::string _text = "", SDL_Color color = SDL_Color(255, 255, 255, 255), std::string textureName = "", std::string fontPath = "arialmt.ttf");
+		Button(const Ant::GameServices& services, std::string textResourceName, std::string _text = "", std::string fontPath = "Resources/UI/Fonts/pixel.ttf", SDL_Color color = SDL_Color(255, 255, 255, 255), std::string backgroundName = "");
 
 		bool getInited() override { return isServicesInited; }
 

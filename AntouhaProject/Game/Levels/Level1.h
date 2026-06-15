@@ -3,6 +3,12 @@
 #include "../../Framework/FrameworkH.h"
 #include "../Context.h"
 
+
+struct LevelUI {
+	Ant::Texture* Background;
+	Ant::Texture* Frame;
+};
+
 class Level1 : public Ant::IScreen {
 private:
 	Ant::IWindow* window;
@@ -17,10 +23,19 @@ private:
 
 	GameContext& context;
 
+	//Level
+
+	LevelUI UITextures;
+
 public:
+	//IGameLogic
 	Level1(GameContext& _context) : context{ _context } {}
 	void init(const Ant::GameServices& services) override;
 	void onUpdate(float dt) override;
 	void onRender() override;
 	void onClose() override;
+
+	//UI
+
+	void DrawUI();
 };

@@ -12,10 +12,15 @@ void BulletManager::shoot(const Ant::Vec2f& pos, const Ant::Vec2f& size, const A
 }
 
 void BulletManager::updateAll(float dt) {
+	//TODO: ¬ынеси координаты окна в отдельные константы или переменные и передавай их через конструктор
+	
+	// x 32 - 416 y 32 - 448
+
 	pool->forEachActive([this, dt](Bullet& bullet) {
 		bullet.pos += bullet.velocity * dt * 25;
 
-		if (bullet.pos.y <= 0 || bullet.pos.y >= 480) {
+		if (bullet.pos.y < 32 || bullet.pos.y > 448 ||
+			bullet.pos.x < 32 || bullet.pos.x > 416) {
 			pool->resetBullet(bullet);
 		}
 	});

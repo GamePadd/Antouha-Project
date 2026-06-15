@@ -2,7 +2,7 @@
 
 //TODO: добавь систему выбора размера текста отдельно, + загляни в Framework Text, там тоже поработай над выбором размера текста
 
-Button::Button(const Ant::GameServices& services, std::string textResourceName, std::string _text, SDL_Color color, std::string backgroundName, std::string fontPath) : isServicesInited{false} {
+Button::Button(const Ant::GameServices& services, std::string textResourceName, std::string _text, std::string fontPath, SDL_Color color, std::string backgroundName) : isServicesInited{false} {
 	inputService = services.input;
 	renderer = services.renderer;
 	textureManager = services.textures;

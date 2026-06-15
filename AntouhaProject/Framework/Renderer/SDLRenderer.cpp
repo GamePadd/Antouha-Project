@@ -6,13 +6,17 @@ namespace Ant {
 	}
 
 	void SDLRenderer::QueueTexture(const Texture* texture, const Vec2f &pos, const Vec2f &size, int layer) {
-		if (layer < 0 || layer > MAX_LAYERS) { return; }
-		layers[layer].push_back(RenderLayerElement{ (SDL_Texture*)texture->get(), pos, size});
+		if (layer < 0 || layer >= MAX_LAYERS) { return; }
+		SDL_Texture* tex = (SDL_Texture*)texture->get();
+		if (tex == nullptr) { return; }
+		layers[layer].push_back(RenderLayerElement{ tex, pos, size});
 	}
 
 	void SDLRenderer::QueueText(const Text* text, const Vec2f& pos, const Vec2f& size, int layer) {
-		if (layer < 0 || layer > MAX_LAYERS) { return; }
-		layers[layer].push_back(RenderLayerElement{ (SDL_Texture*)text->get(), pos, size});
+		if (layer < 0 || layer >= MAX_LAYERS) { return; }
+		SDL_Texture* tex = (SDL_Texture*)text->get();
+		if (tex == nullptr) { return; }
+		layers[layer].push_back(RenderLayerElement{ tex, pos, size});
 	}
 
 	void SDLRenderer::RenderAll() {

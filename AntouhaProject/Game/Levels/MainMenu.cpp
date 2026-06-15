@@ -10,11 +10,10 @@ void MainMenu::init(const Ant::GameServices& services) {
 	input = services.input;
 	text = services.text;
 
-	textures->load("bulba", (SDL_Renderer*)window->getNativeHandle(), "bulba.jpg");
-	text->load("GameName", (SDL_Renderer*)window->getNativeHandle(), "Antouha Project", SDL_Color(255, 255, 255, 255), "arialmt.ttf");
+	text->load("GameName", (SDL_Renderer*)window->getNativeHandle(), "Antouha Project", SDL_Color(255, 255, 255, 255), "Resources/UI/Fonts/pixel.ttf");
 
-	playButton = new Button(services, "playButtonText", "Play", SDL_Color(255,255,255,255),"bulba");
-	exitButton = new Button(services, "exitButtonText", "Exit", SDL_Color(255, 255, 255, 255), "bulba");
+	playButton = new Button(services, "playButtonText", "Play");
+	exitButton = new Button(services, "exitButtonText", "Exit");
 
 	playButton->setPos(Ant::Vec2f(320.0f, 240.0f));
 	exitButton->setPos(Ant::Vec2f(320.0f, 320.0f));

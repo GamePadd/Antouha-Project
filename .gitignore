@@ -6,6 +6,7 @@
 #Folders
 
 schemas/
+Resources/PSSources/
 
 # User-specific files
 *.rsuser
