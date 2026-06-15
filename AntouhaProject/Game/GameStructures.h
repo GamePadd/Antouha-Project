@@ -42,9 +42,9 @@ struct Player {
 		float dy = down - up;
 
 		if (dx != 0.0f && dy != 0.0f) {
-			float len = sqrt(dx * dx + dy * dy);
-			dx /= len;
-			dy /= len;
+			//float len = sqrt(dx * dx + dy * dy);
+			dx /= 1.414;
+			dy /= 1.414;
 		}
 
 		pos += Ant::Vec2f(dx*speed*dt,dy*speed*dt);
