@@ -11,9 +11,9 @@ void AntouhaProject::init(const Ant::GameServices& services) {
 	input = services.input;
 	text = services.text;
 
-	Ant::IScreen* mainScr = new MainMenu(context);
+	auto mainScr = std::make_unique<MainMenu>(context);
 	mainScr->init(services);
-	screens->pushScreen(mainScr);
+	screens->pushScreen(std::move(mainScr));
 }
 
 void AntouhaProject::onUpdate(float dt) {

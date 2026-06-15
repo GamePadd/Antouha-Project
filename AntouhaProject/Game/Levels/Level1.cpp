@@ -1,4 +1,5 @@
 #include "Level1.h"
+#include "MainMenu.h"
 
 /*
 
@@ -46,11 +47,6 @@ void Level1::init(const Ant::GameServices& services) {
 
 	context.ply.sprite = textures->get("player");
 
-	//Init player
-
-	context.ply.pos = Ant::Vec2f(320.0f, 240.0f);
-	context.ply.size = Ant::Vec2f(32.f, 32.f);
-
 	//Input monitor
 
 	input->RegisterKey(ANT_W);
@@ -66,17 +62,20 @@ void Level1::init(const Ant::GameServices& services) {
 	input->RegisterKey(ANT_SPACE);
 	input->RegisterKey(ANT_LSHIFT);
 	input->RegisterKey(ANT_Z);
+	input->RegisterKey(ANT_ESCAPE);
 }
-
-//TODO: Вынеси блять потом все по нормальным методам для players и тд нахуй, а то че за хуйня то блять дебил костыльный
 
 void Level1::onUpdate(float dt) {
 	// x 32 - 416 y 32 - 448
 
 	//Controls
 
+	if (input->isKeyPressed(ANT_ESCAPE)) {
+		screens->popScreen();
+	}
+
 	if (context.ply.Update(input, dt)) {
-		context.bullets.shoot(context.ply.pos, Ant::Vec2f(15.0f, 15.0f), Ant::Vec2f(0.0f, -27.0f), levelResources.bulletsTextures["bullet2"]);
+		context.bullets.shoot(context.ply.pos, Ant::Vec2f(25.0f, 25.0f), Ant::Vec2f(0.0f, -27.0f), levelResources.bulletsTextures["bullet2"]);
 		context.bullets.shoot(context.ply.pos, Ant::Vec2f(15.0f, 15.0f), Ant::Vec2f(8.0f, -27.0f), levelResources.bulletsTextures["bullet1"]);
 		context.bullets.shoot(context.ply.pos, Ant::Vec2f(15.0f, 15.0f), Ant::Vec2f(-8.0f, -27.0f), levelResources.bulletsTextures["bullet1"]);
 	}

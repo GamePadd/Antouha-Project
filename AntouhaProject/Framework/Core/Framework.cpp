@@ -91,6 +91,8 @@ namespace Ant {
 				scr->onRender();
 			}
 
+			screenManager.Process();
+
 			renderer->RenderAll();
 			window->swapBuffers();
 

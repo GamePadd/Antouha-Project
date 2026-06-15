@@ -2,9 +2,16 @@
 
 #include "../Framework/FrameworkH.h"
 
+struct LevelResources {
+	Ant::Texture* Background;
+	Ant::Texture* Frame;
+
+	std::unordered_map<std::string, Ant::Texture*> bulletsTextures;
+};
+
 struct Player {
-	Ant::Vec2f pos;
-	Ant::Vec2f size;
+	Ant::Vec2f pos = Ant::Vec2f(320.0f, 240.0f);
+	Ant::Vec2f size = Ant::Vec2f(32.0f, 32.0f);
 
 	Ant::Texture* sprite;
 	

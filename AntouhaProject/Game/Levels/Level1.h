@@ -3,14 +3,6 @@
 #include "../../Framework/FrameworkH.h"
 #include "../Context.h"
 
-
-struct LevelResources {
-	Ant::Texture* Background;
-	Ant::Texture* Frame;
-
-	std::unordered_map<std::string, Ant::Texture*> bulletsTextures;
-};
-
 class Level1 : public Ant::IScreen {
 private:
 	Ant::IWindow* window;

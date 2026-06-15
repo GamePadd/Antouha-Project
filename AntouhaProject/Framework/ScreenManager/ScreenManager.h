@@ -1,22 +1,32 @@
 #pragma once
 
 #include <stack>
+#include <memory>
+#include <utility>
+#include <queue>
+
 #include "IScreen.h"
 
 namespace Ant {
-	//TODO: сделай очередь, иначе экран сможет сам себя удалить и будет UB
+	enum class ScreenOpType {Push,Pop};
 
 	class ScreenManager {
-		private:
-			std::stack<IScreen*> screenStack;
+	private:
+		using OperationsPair = std::pair<ScreenOpType, std::unique_ptr<IScreen>>;
 
-		public:
-			~ScreenManager();
+		std::stack<std::unique_ptr<IScreen>> screenStack;
+		std::queue<OperationsPair> opQueue;
 
-			void pushScreen(IScreen* screen);
-			void popScreen();
+		friend class Framework;
 
-			IScreen* getTop() { return screenStack.top(); }
-			size_t getScreenCount() { return screenStack.size(); }
+		void Process();
+	public:
+		~ScreenManager();
+
+		void pushScreen(std::unique_ptr<IScreen> screen);
+		void popScreen();
+
+		IScreen* getTop() { return screenStack.top().get(); }
+		size_t getScreenCount() { return screenStack.size(); }
 	};
 }

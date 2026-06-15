@@ -27,9 +27,9 @@ void MainMenu::init(const Ant::GameServices& services) {
 	});
 
 	playButton->setOnClick([this, services](){
-		Ant::IScreen* level1Scr = new Level1(context);
+		auto level1Scr = std::make_unique<Level1>(context);
 		level1Scr->init(services);
-		screens->pushScreen(level1Scr);
+		screens->pushScreen(std::move(level1Scr));
 	});
 
 	exitButton->setOnHover([this]() {
