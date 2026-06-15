@@ -99,7 +99,7 @@ void Level1::onRender() {
 	renderer->QueueTexture(context.ply.sprite, context.ply.pos, context.ply.size, 11);
 
 	context.bullets.updateAllCustom([&](Bullet& bullet) {
-		renderer->QueueTexture(bullet.sprite, bullet.pos, bullet.size, 10);
+		renderer->QueueTexture(bullet.sprite, bullet.pos, bullet.size, 10, 150);
 	});
 
 	DrawUI();

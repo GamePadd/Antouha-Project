@@ -5,18 +5,18 @@ namespace Ant {
 		SDL_RenderClear(renderer);
 	}
 
-	void SDLRenderer::QueueTexture(const Texture* texture, const Vec2f &pos, const Vec2f &size, int layer) {
+	void SDLRenderer::QueueTexture(const Texture* texture, const Vec2f &pos, const Vec2f &size, int layer, Uint8 alpha) {
 		if (layer < 0 || layer >= MAX_LAYERS) { return; }
 		SDL_Texture* tex = (SDL_Texture*)texture->get();
 		if (tex == nullptr) { return; }
-		layers[layer].push_back(RenderLayerElement{ tex, pos, size});
+		layers[layer].push_back(RenderLayerElement{ tex, pos, size, alpha});
 	}
 
-	void SDLRenderer::QueueText(const Text* text, const Vec2f& pos, const Vec2f& size, int layer) {
+	void SDLRenderer::QueueText(const Text* text, const Vec2f& pos, const Vec2f& size, int layer, Uint8 alpha) {
 		if (layer < 0 || layer >= MAX_LAYERS) { return; }
 		SDL_Texture* tex = (SDL_Texture*)text->get();
 		if (tex == nullptr) { return; }
-		layers[layer].push_back(RenderLayerElement{ tex, pos, size});
+		layers[layer].push_back(RenderLayerElement{ tex, pos, size, alpha});
 	}
 
 	void SDLRenderer::RenderAll() {
@@ -33,6 +33,7 @@ namespace Ant {
 					it.size.x* scaleX, it.size.y* scaleY
 				};
 
+				SDL_SetTextureAlphaMod(it.texture, it.alpha);
 				SDL_RenderTexture(renderer, it.texture, nullptr, &dstRect);
 			}
 			layers[i].clear();
