@@ -58,9 +58,7 @@ void MainMenu::onRender() {
 	exitButton->render(1);
 }
 
-void MainMenu::onClose() {
-
-}
+void MainMenu::onClose() {}
 
 MainMenu::~MainMenu() {
 	delete playButton;

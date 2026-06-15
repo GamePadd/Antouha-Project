@@ -1,5 +1,6 @@
 #include "Level1.h"
 #include "MainMenu.h"
+#include "PauseMenu.h"
 
 /*
 
@@ -71,7 +72,18 @@ void Level1::onUpdate(float dt) {
 	//Controls
 
 	if (input->isKeyPressed(ANT_ESCAPE)) {
-		screens->popScreen();
+		Ant::GameServices services;
+		services.window = window;
+		services.renderer = renderer;
+		services.eventBus = events;
+		services.textures = textures;
+		services.screens = screens;
+		services.input = input;
+		services.text = text;
+
+		auto scr = std::make_unique<PauseMenu>(context);
+		scr->init(services);
+		screens->pushScreen(std::move(scr));
 	}
 
 	if (context.ply.Update(input, dt)) {
@@ -93,6 +105,4 @@ void Level1::onRender() {
 	DrawUI();
 }
 
-void Level1::onClose() {
-
-}
+void Level1::onClose() {}

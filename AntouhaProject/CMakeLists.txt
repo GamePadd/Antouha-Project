@@ -13,6 +13,7 @@
 	"Game/BulletSystem/BulletPool.cpp"
 	"Game/Levels/Level1.cpp"
 	"Game/Levels/MainMenu.cpp"
+	"Game/Levels/PauseMenu.cpp"
 	"Game/UI/Button.cpp"
 	"Game/Game.cpp"
 )
@@ -47,6 +48,7 @@ set(HEADERS
 	"Game/UI/IButton.h"
 	"Game/Levels/Level1.h"
 	"Game/Levels/MainMenu.h"
+	"Game/Levels/PauseMenu.h"
 )
 
 add_executable (AntouhaProject ${SOURCES} ${HEADERS})
