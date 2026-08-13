@@ -21,16 +21,14 @@ void MainMenu::init(const Ant::GameServices& services) {
 
 	playButton->setOnHover([this]() {
 		playButton->setText("Play", SDL_Color(0, 255, 0, 255), 64);
-		if (!playButton->isHovered) {
-			animations->start("PlayHoverUp", playButton->getPos(), Ant::Vec2f(320.0f, 240.0f) - Ant::Vec2f(0.0f, 25.0f), 500.0f);
-		}
+		animations->stop("PlayHoverDown");
+		animations->start("PlayHoverUp", playButton->getPos(), Ant::Vec2f(320.0f, 240.0f) - Ant::Vec2f(0.0f, 25.0f), 500.0f);
 	});
 
 	playButton->setOnLeave([this]() {
 		playButton->setText("Play", SDL_Color(255, 255, 255, 255),64);
-		if (playButton->isHovered) {
-			animations->start("PlayHoverDown", playButton->getPos(), Ant::Vec2f(320.0f, 240.0f), 500.0f);
-		}
+		animations->stop("PlayHoverUp");
+		animations->start("PlayHoverDown", playButton->getPos(), Ant::Vec2f(320.0f, 240.0f), 500.0f);
 	});
 
 	playButton->setOnClick([this, services](){
@@ -41,16 +39,14 @@ void MainMenu::init(const Ant::GameServices& services) {
 
 	exitButton->setOnHover([this]() {
 		exitButton->setText("Exit", SDL_Color(255, 0, 0, 255), 64);
-		if (!exitButton->isHovered) {
-			animations->start("ExitHoverUp", exitButton->getPos(), Ant::Vec2f(320.0f, 320.0f) - Ant::Vec2f(0.0f, 25.0f), 500.0f);
-		}
+		animations->stop("ExitHoverDown");
+		animations->start("ExitHoverUp", exitButton->getPos(), Ant::Vec2f(320.0f, 320.0f) - Ant::Vec2f(0.0f, 25.0f), 500.0f);
 	});
 
 	exitButton->setOnLeave([this]() {
 		exitButton->setText("Exit", SDL_Color(255, 255, 255, 255), 64);
-		if (exitButton->isHovered) {
-			animations->start("ExitHoverDown", exitButton->getPos(), Ant::Vec2f(320.0f, 320.0f), 500.0f);
-		}
+		animations->stop("ExitHoverUp");
+		animations->start("ExitHoverDown", exitButton->getPos(), Ant::Vec2f(320.0f, 320.0f), 500.0f);
 	});
 
 	exitButton->setOnClick([&]() {

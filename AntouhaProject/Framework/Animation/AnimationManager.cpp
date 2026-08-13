@@ -23,8 +23,9 @@ namespace Ant {
 	}
 
 	void AnimationManager::stop(const std::string& animationName) {
+		if (animations.find(animationName) == animations.end()) { return; }
 		animations.erase(animationName);
-		std::cout << "animation stopped\n";
+		//std::cout << "animation stopped\n";
 	}
 
 	void AnimationManager::updateAll(float dt, Uint64 currentTime) {
