@@ -84,6 +84,7 @@ namespace Ant {
 
 			//Rendering
 
+			animations.updateAll(dt, SDL_GetTicks());
 			renderer->Clear();
 
 			if (screenManager.getScreenCount() != 0) {

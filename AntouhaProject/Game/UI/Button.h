@@ -29,14 +29,20 @@ class Button : public IButton {
 		float myPrev;
 
 		bool isServicesInited;
+
 	public:
 		Button(const Ant::GameServices& services, std::string textResourceName, std::string _text = "", std::string fontPath = "Resources/UI/Fonts/pixel.ttf", SDL_Color color = SDL_Color(255, 255, 255, 255), std::string backgroundName = "");
-
+		bool isHovered;
 		bool getInited() override { return isServicesInited; }
+		//ÍÀÊÎÑÒÛËßË ÁËßÒÜ ÓÁËÞÄÎÊ
+		Ant::Vec2f* getSize() override { return &size; }
+		Ant::Vec2f* getPos() override { return &pos; }
+		float* getFontSize() override { return text->getSize(); }
 
-		void setText(std::string _text, SDL_Color _color) override;
+		void setText(std::string _text, SDL_Color _color, int size) override;
+		void setFontSize(int size) override;
 		void setBackground(std::string textureName) override;
-		void setFont(std::string font) override;
+		void setFont(std::string font, int size) override;
 		void setSizeMul(float mul) override;
 		void setSize(Ant::Vec2f size) override;
 		void setPos(Ant::Vec2f pos) override;

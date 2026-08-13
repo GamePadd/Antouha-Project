@@ -12,7 +12,7 @@ Button::Button(const Ant::GameServices& services, std::string textResourceName, 
 	isServicesInited = true;
 
 	if (text = textManager->get(textResourceName); text != nullptr) {
-		text->updateText(_text, color);
+		text->updateText(_text, 64, color);
 	}
 	else {
 		textManager->load(textResourceName, (SDL_Renderer*)window->getNativeHandle(), _text, color, fontPath);
@@ -28,9 +28,11 @@ Button::Button(const Ant::GameServices& services, std::string textResourceName, 
 	size = Ant::Vec2f(256.0f, 64.0f);
 }
 
-void Button::setFont(std::string font) {text->setFont(font);}
+void Button::setFont(std::string font, int size) {text->setFont(font, size);}
 
-void Button::setText(std::string _text, SDL_Color _color) {text->updateText(_text, _color);}
+void Button::setText(std::string _text, SDL_Color _color, int size) {text->updateText(_text, size, _color);}
+
+void Button::setFontSize(int size) { text->setSize(size); }
 
 void Button::setSizeMul(float mul) {sizeMul = mul;}
 
@@ -66,7 +68,7 @@ void Button::updateState() {
 	if ((mx >= pos.x - (size.x * sizeMul) / 2 && mx <= pos.x + (size.x * sizeMul) / 2) &&
 		(my >= pos.y - (size.y * sizeMul) / 2 && my <= pos.y + (size.y * sizeMul) / 2)) {
 		if (onHover != nullptr) { onHover(); }
-
+		isHovered = true;
 		if (inputService->isMousePressed(ANT_BUTTON_LEFT)) {
 			if (onClick != nullptr) { onClick(); }
 		}
@@ -75,6 +77,7 @@ void Button::updateState() {
 		if ((mxPrev >= pos.x - (size.x * sizeMul) / 2 && mxPrev <= pos.x + (size.x * sizeMul) / 2) &&
 			(myPrev >= pos.y - (size.y * sizeMul) / 2 && myPrev <= pos.y + (size.y * sizeMul) / 2)) {
 			if (onLeave != nullptr) { onLeave(); }
+			isHovered = false;
 		}
 	}
 }

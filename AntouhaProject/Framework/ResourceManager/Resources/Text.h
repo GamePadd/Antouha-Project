@@ -21,20 +21,24 @@ namespace Ant {
 
 			int width;
 			int height;
+
+			float size;
 		public:
 			//TODO: мб тут потом сделай систему чтоб оно блять не загружало даже если ошибка будет, защиту продумай в будущем еблана кусок
 
 			Text(SDL_Renderer* _renderer, std::string _text, SDL_Color _textColor, std::string _fontPath) : renderer(_renderer),
-			fontPath(_fontPath), text(_text), textColor(_textColor) {
+			fontPath(_fontPath), text(_text), textColor(_textColor), size(64) {
 				load();
 			}
 
 			bool load() override;
 			bool isLoaded() override { return textTexture != nullptr; }
 			void* get() const override { return textTexture; }
+			float* getSize();
 
-			void setFont(std::string path);
-			bool updateText(std::string text, SDL_Color textColor = SDL_Color(255, 255, 255, 255));
+			void setFont(std::string path, int size);
+			void setSize(int size);
+			bool updateText(std::string text, int size, SDL_Color textColor = SDL_Color(255, 255, 255, 255));
 			void free();
 
 			int getWidth() { return width; }

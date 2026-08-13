@@ -7,8 +7,13 @@ class IButton {
 		virtual ~IButton() = default;
 		virtual bool getInited() = 0;
 
-		virtual void setText(std::string _text, SDL_Color _color) = 0;
-		virtual void setFont(std::string font) = 0;
+		virtual Ant::Vec2f* getSize() = 0;
+		virtual Ant::Vec2f* getPos() = 0;
+		virtual float* getFontSize() = 0;
+
+		virtual void setText(std::string _text, SDL_Color _color, int size) = 0;
+		virtual void setFontSize(int size) = 0;
+		virtual void setFont(std::string font, int size) = 0;
 		virtual void setBackground(std::string textureName) = 0;
 		virtual void setSizeMul(float mul) = 0;
 		virtual void setSize(Ant::Vec2f size) = 0;

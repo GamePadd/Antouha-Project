@@ -21,11 +21,11 @@ void PauseMenu::init(const Ant::GameServices& services) {
 	exitButton->setPos(Ant::Vec2f(320.0f, 320.0f));
 
 	continueButton->setOnHover([this]() {
-		continueButton->setText("Continue", SDL_Color(0, 255, 0, 255));
+		continueButton->setText("Continue", SDL_Color(0, 255, 0, 255), 64);
 	});
 
 	continueButton->setOnLeave([this]() {
-		continueButton->setText("Continue", SDL_Color(255, 255, 255, 255));
+		continueButton->setText("Continue", SDL_Color(255, 255, 255, 255), 64);
 	});
 
 	continueButton->setOnClick([this, services]() {
@@ -33,11 +33,11 @@ void PauseMenu::init(const Ant::GameServices& services) {
 	});
 
 	exitButton->setOnHover([this]() {
-		exitButton->setText("Exit", SDL_Color(255, 0, 0, 255));
+		exitButton->setText("Exit", SDL_Color(255, 0, 0, 255),64);
 	});
 
 	exitButton->setOnLeave([this]() {
-		exitButton->setText("Exit", SDL_Color(255, 255, 255, 255));
+		exitButton->setText("Exit", SDL_Color(255, 255, 255, 255),64);
 	});
 
 	exitButton->setOnClick([&]() {
