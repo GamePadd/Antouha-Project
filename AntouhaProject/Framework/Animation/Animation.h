@@ -10,7 +10,7 @@ namespace Ant {
 	class IAnimation {
 	public:
 		virtual ~IAnimation() = default;
-		virtual void update(Uint64 currentTime) = 0;
+		virtual bool update(Uint64 currentTime) = 0; //return true = animation is done
 
 		//std::function<void(void)> onEnd;
 	};
@@ -27,7 +27,7 @@ namespace Ant {
 		float startValue;
 		float endValue;
 	public:
-		void update(Uint64 currentTime) override;
+		bool update(Uint64 currentTime) override;
 		ValueFAnimation(Uint64 _startTime, Uint64 _duration, float* _value, float goal);
 	};
 
@@ -44,7 +44,7 @@ namespace Ant {
 		Ant::Vec2f endValue;
 
 	public:
-		void update(Uint64 currentTime) override;
+		bool update(Uint64 currentTime) override;
 		VectorFAnimation(Uint64 _startTime, Uint64 _duration, Ant::Vec2f* _value, Ant::Vec2f goal);
 	};
 }

@@ -20,7 +20,7 @@ namespace Ant {
 
 	void AnimationManager::updateAll(float dt, Uint64 currentTime) {
 		for (auto& [name,anim] : animations) {
-			anim.update(currentTime);
+			if (anim.update(currentTime)) { stop(name); }
 		}
 	}
 }
