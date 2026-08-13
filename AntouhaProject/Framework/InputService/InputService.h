@@ -68,7 +68,7 @@ namespace Ant {
 
 			float getMouseY() const { 
 				float scale = (float)context->getHeight() / virtualSize.y;
-				return mouseY / scale; 
+				return mouseY / scale	; 
 			}
 
 			bool isMousePressed(Uint8 button);
