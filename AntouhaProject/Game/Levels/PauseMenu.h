@@ -11,6 +11,7 @@ private:
 
 	Ant::ResourceManager<Ant::Texture>* textures;
 	Ant::ResourceManager<Ant::Text>* text;
+	Ant::AnimationManager* animations;
 
 	Ant::EventBus* events;
 	Ant::ScreenManager* screens;

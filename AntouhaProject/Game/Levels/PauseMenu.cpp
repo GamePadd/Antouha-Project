@@ -10,6 +10,7 @@ void PauseMenu::init(const Ant::GameServices& services) {
 	screens = services.screens;
 	input = services.input;
 	text = services.text;
+	animations = services.animations;
 
 	text->load("PauseText", (SDL_Renderer*)window->getNativeHandle(), "Pause", SDL_Color(255, 255, 255, 255), "Resources/UI/Fonts/pixel.ttf");
 

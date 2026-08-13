@@ -25,6 +25,7 @@ void Level1::init(const Ant::GameServices& services) {
 	screens = services.screens;
 	input = services.input;
 	text = services.text;
+	animations = services.animations;
 
 	//Load textures
 

@@ -8,6 +8,7 @@
 #include "../Event/EventBus.h"
 #include "../ScreenManager/ScreenManager.h"
 #include "../InputService/InputService.h"
+#include "../Animation/AnimationManager.h"
 
 namespace Ant {
 	struct GameServices {
@@ -23,6 +24,8 @@ namespace Ant {
 		ResourceManager<Text>* text;
 
 		ScreenManager* screens;
+
+		AnimationManager* animations;
 
 		//Services
 

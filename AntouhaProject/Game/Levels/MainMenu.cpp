@@ -9,6 +9,7 @@ void MainMenu::init(const Ant::GameServices& services) {
 	screens = services.screens;
 	input = services.input;
 	text = services.text;
+	animations = services.animations;
 
 	text->load("GameName", (SDL_Renderer*)window->getNativeHandle(), "Antouha Project", SDL_Color(255, 255, 255, 255), "Resources/UI/Fonts/pixel.ttf");
 

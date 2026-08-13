@@ -8,6 +8,7 @@
 	"Framework/InputService/InputService.cpp"
 	"Framework/ScreenManager/ScreenManager.cpp"
 	"Framework/Animation/AnimationManager.cpp"
+	"Framework/Animation/Animation.cpp"
 
 	"Game/main.cpp"
 	"Game/BulletSystem/BulletManager.cpp"
@@ -39,6 +40,7 @@ set(HEADERS
 	"Framework/ScreenManager/IScreen.h"
 	"Framework/Math/Math.h"
 	"Framework/Animation/AnimationManager.h"
+	"Framework/Animation/Animation.h"
 
 	"Game/Game.h"
 	"Game/Events.h"

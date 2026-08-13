@@ -12,6 +12,7 @@ class AntouhaProject : public Ant::IGameLogic {
 		Ant::ScreenManager* screens;
 		Ant::InputService* input;
 		Ant::ResourceManager<Ant::Text>* text;
+		Ant::AnimationManager* animations;
 
 		GameContext context;
 

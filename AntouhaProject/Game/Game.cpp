@@ -10,6 +10,7 @@ void AntouhaProject::init(const Ant::GameServices& services) {
 	screens = services.screens;
 	input = services.input;
 	text = services.text;
+	animations = services.animations;
 
 	auto mainScr = std::make_unique<MainMenu>(context);
 	mainScr->init(services);

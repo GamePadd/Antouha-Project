@@ -54,6 +54,8 @@ namespace Ant {
 			IGameLogic* game;
 			ScreenManager screenManager;
 
+			AnimationManager animations;
+
 			void CreateWindow();
 			void CreateRenderer();
 
